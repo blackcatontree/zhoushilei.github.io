@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
     
-    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/114755056?v=4"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
@@ -17,7 +17,7 @@
 说明：每个问题均包含“问题陈述｜触发出处｜我们查的资料(显然,这里有LLM辅助写作)｜LLM提出并建议我实践的计划｜未解之惑/待验证”，并尽量给出可复用的评估维度或实验设计思路。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://blackcatontree.github.io/zhoushilei.github.io/post/20251017%20%E3%80%8A-xian-dai-ruan-jian-gong-cheng-%E3%80%8B-ke-cheng-%20-ge-ren-bo-ke-zuo-ye-%201%E2%80%94%E2%80%94-jiu-%E3%80%8A-xian-dai-ruan-jian-gong-cheng-%E3%80%8B-ti-%205%20-ge-wen-ti.html">
-<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/114755056?v=4">
 <title>20251017 《现代软件工程》课程 个人博客作业 1——就《现代软件工程》提 5 个问题</title>
 
 
@@ -167,7 +167,7 @@ ms 的内存占用）。</p>
 <div class="comments" id="comments"></div>
 
 </div>
-    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://blackcatontree.github.io/zhoushilei.github.io">Blog Title</a></div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://blackcatontree.github.io/zhoushilei.github.io">周仕磊的博客</a></div>
 <div id="footer2">
     <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
 </div>
@@ -219,7 +219,11 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
-
+cmButton=document.getElementById("cmButton");
+    span=document.createElement("span");
+    span.setAttribute("class","Counter");
+    span.innerHTML="1";
+    cmButton.appendChild(span);
 
 
 function openComments(){
