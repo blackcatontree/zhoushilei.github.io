@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="Part B｜快速通读《构建之法》后的五个问题
+说明：每个问题均包含“问题陈述｜触发出处｜我们查的资料(显然,这里有LLM辅助写作)｜LLM提出并建议我实践的计划｜未解之惑/待验证”，并尽量给出可复用的评估维度或实验设计思路。">
+<meta property="og:title" content="20251017 《现代软件工程》课程 个人博客作业 1——就《现代软件工程》提 5 个问题">
+<meta property="og:description" content="Part B｜快速通读《构建之法》后的五个问题
+说明：每个问题均包含“问题陈述｜触发出处｜我们查的资料(显然,这里有LLM辅助写作)｜LLM提出并建议我实践的计划｜未解之惑/待验证”，并尽量给出可复用的评估维度或实验设计思路。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blackcatontree.github.io/zhoushilei.github.io/post/20251017%20%E3%80%8A-xian-dai-ruan-jian-gong-cheng-%E3%80%8B-ke-cheng-%20-ge-ren-bo-ke-zuo-ye-%201%E2%80%94%E2%80%94-jiu-%E3%80%8A-xian-dai-ruan-jian-gong-cheng-%E3%80%8B-ti-%205%20-ge-wen-ti.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<title>20251017 《现代软件工程》课程 个人博客作业 1——就《现代软件工程》提 5 个问题</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">20251017 《现代软件工程》课程 个人博客作业 1——就《现代软件工程》提 5 个问题</h1>
+<div class="title-right">
+    <a href="https://blackcatontree.github.io/zhoushilei.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/blackcatontree/zhoushilei.github.io/issues/2" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>Part B｜快速通读《构建之法》后的五个问题<br>
+说明：每个问题均包含“问题陈述｜触发出处｜我们查的资料(显然,这里有LLM辅助写作)｜LLM提出并建议我实践的计划｜未解之惑/待验证”，并尽量给出可复用的评估维度或实验设计思路。</p>
+<h2>Q1｜在快速迭代的项目中，如何平衡“敏捷性”与“关键决策的持久记录”？</h2>
+<p>问题陈述<br>
+创业项目或课程实践常追求极高的迭代速度（敏捷性），但这种速度往往是以牺牲文档为代价的。当核心成员离职或项目进入维护期，关键的架构、技术选型等决策依据会丢失，形成“认知债务”。如何设计一个轻量级的流程，确保在不降低迭代速度的前提下，关键的架构决策记录（ADR）能够被及时沉淀和追踪？</p>
+<p><strong>触发出处</strong><br>
+第 5、11、16 章关于团队合作、设计原则和文档管理的讨论。</p>
+<p><strong>我们查的资料</strong></p>
+<p>ADR（Architectural Decision Records）：一种轻量级文档模式，记录重要的架构决策、背景、可选方案及后果。</p>
+<p>C4 Model：一种用于可视化软件架构的多层模型（Context, Containers, Components, Code），帮助团队快速达成对系统整体的理解。</p>
+<p>Decision Log (Spotify)：Spotify 等公司使用决策日志作为轻量级知识管理的核心实践，强调决策的可追溯性。</p>
+<p>LLM提出并建议我实践的计划<br>
+以**“异步协作”与“工具强制”**为核心：</p>
+<p>触发机制：只记录影响超过一个模块或涉及非功能性需求的决策。在每次 Issue/PR 模板中内置“是否需要ADR？”的复选框，强制开发者思考。</p>
+<p>工具集成：使用如 adr-tool 或集成到版本库的 Markdown 文件，强制在 PR 合并前，由 Navigator 或 Code Reviewer 确认 ADR 的存在和关联。</p>
+<p>评估维度：通过计算“关键文件（如配置、接口定义）变更后，对应 ADR 的更新率”来度量实践效果。</p>
+<p><strong>未解之惑/待验证</strong><br>
+ADR 的“关键”程度难以客观量化，可能导致过度记录或漏记。是否存在一个可量化的指标（如：变更涉及的代码文件数量、功能点的复杂度）作为“必须记录ADR”的自动触发阈值？</p>
+<h2>Q2｜如何用组织和心理学机制，防止“破窗效应”演变为工程质量灾难？</h2>
+<p>问题陈述<br>
+软件中的“破窗效应”指忽略微小的错误（如代码风格不一致、警告未处理、测试用例不足）最终会导致团队对质量标准的普遍放任，积累巨大的技术债。如何从团队流程和工程师心理机制入手，建立一种“零容忍”文化，使得团队主动且持续地维护代码的整洁度？</p>
+<p><strong>触发出处</strong><br>
+第 1、12、17 章关于软件质量、测试与绩效管理的讨论。</p>
+<p><strong>我们查的资料</strong></p>
+<p>“持续集成（CI）的文化”：强调小步快跑、频繁合并，使错误暴露成本最低。</p>
+<p>Code Review（代码评审）中的“标准执行”：将风格和简单缺陷的检查交给 Linting/静态分析工具，让人力专注于逻辑和设计缺陷。</p>
+<p>责任感与“所有权”：通过明确代码模块负责人，利用个体的责任感来维护其所负责区域的质量。</p>
+<p>LLM提出并建议我实践的计划（可量化指标与流程）</p>
+<p>工具强制：将代码静态分析（Linter/Formatter）集成到 CI 流程中，失败即拒绝合并（Merge Blocking），使“破窗”在第一时间被物理阻断。</p>
+<p>团队共识：每周固定在站会（Stand-up）或回顾会（Retrospective）中，用 5 分钟回顾上周被发现重复出现的 Linter 警告或静态分析问题，并将其纳入技术债清单，明确处理时间。</p>
+<p>评估维度：“警告逃逸率”（静态分析警告数量与实际合并进入主分支的 PR 数量之比）和**“热点文件缺陷密度”**（高变更频率文件的缺陷报告数量）作为质量前置指标。</p>
+<p><strong>未解之惑/待验证</strong><br>
+工具强制是否会导致团队的“工具疲劳”或“逆向优化”？如何设计一个机制，允许团队在紧急情况下“临时绕过”CI 流程，但同时确保事后必须进行弥补？</p>
+<h2>Q3｜自组织团队如何高效管理并解决重大的、深层次的技术分歧？</h2>
+<p><strong>问题陈述</strong><br>
+在《构建之法》倡导的自组织、平等合作的团队模式中，当团队成员在核心技术栈（如语言、框架）或宏观架构方向上存在根本性分歧时，如何避免陷入无休止的争论或因意见不合而导致效率停滞？缺乏“独裁者”的情况下，如何保证决策的及时性、质量和团队的士气？</p>
+<p><strong>触发出处</strong><br>
+第 4、5 章关于两人合作和团队组织、以及第 11 章的设计原则。</p>
+<p><strong>我们查的资料</strong></p>
+<p>T-Shirt Sizing：用“小号、中号、大号”等相对单位进行评估，避免陷入精确数字的争执。</p>
+<p>“技术探索”与“原型竞争”：将分歧转化为短期、可控的实践（Spike），让不同方案在原型中竞争，用证据而非观点说话。</p>
+<p>仲裁机制：设定一个临时的、具有最终决定权的“技术仲裁者”（可以是团队外的资深人士或项目经理），仅在团队僵持不下时启用。</p>
+<p>LLM提出并建议我实践的计划（“证据驱动”的冲突解决流程）</p>
+<p>界定分歧：将分歧转化为可验证的非功能性需求指标（如：方案 A 带来 50<br>
+ms 的延迟，方案 B 带来 10<br>
+ms 的内存占用）。</p>
+<p>原型竞争：分两组进行短期（不超过 3 天）的“原型竞赛”，分别实现关键瓶颈模块，并用统一的基准测试进行评估。</p>
+<p>决策标准：以数据证据和 ADR 记录为依据，进行投票（如果数据证据不足，则倾向于风险最低/可维护性最高的方案）。</p>
+<p>评估维度：通过追踪“技术分歧引入的 ADR 数量”与“分歧从提出到解决的中位时长”来度量团队的冲突解决效率。</p>
+<p><strong>未解之惑/待验证</strong><br>
+当原型竞争的时间成本高于直接实施任一方案时，这种方法是否仍具经济性？如何防止仲裁者权力固化，避免团队再次退化为“独裁者/执行者”模式？</p>
+<h2>Q4｜在“捣蛋鬼”用户场景下，如何系统化地分配防御性工程资源？</h2>
+<p><strong>问题陈述</strong><br>
+当面对恶意用户（如黑客、作弊者、滥用 API 者）时，团队必须投入资源进行防御性开发。这种投入会直接挤占为合法用户开发新功能（功能性需求）的资源。如何在资源有限的前提下，建立一套伦理与资源分配框架，系统地决定防御性工程（如安全、反作弊、风控）的“度”？</p>
+<p><strong>触发出处</strong><br>
+第 8、10 章关于需求分析和用户建模，也间接呼应了另一个同学关于高数考试平台作弊防御的困境。</p>
+<p><strong>我们查的资料</strong></p>
+<p>STRIDE 模型：用于威胁建模的框架，分析潜在的安全威胁（Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege）。</p>
+<p>资产重要性评估：对系统中的数据、功能进行价值和敏感度分级，优先保护高价值资产。</p>
+<p>风险价值期望：Risk=Probability×Impact，用于量化风险，指导资源投入。</p>
+<p>LLM提出并建议我实践的计划（风险驱动的资源分配）</p>
+<p>资产与威胁映射：列出核心系统资产（如用户数据、核心算法、计算资源）并用 STRIDE 进行威胁建模。</p>
+<p>风险分级：评估威胁的发生概率和损失影响，计算风险得分，得出高风险清单。</p>
+<p>防御成本核算：对防御高风险清单中项目的成本（工时、资源）进行估算。</p>
+<p>资源分配公式：设定一个固定的资源比例（如 80% 用于新功能，20% 用于防御性工程），然后将防御性工程的资源优先投入到风险得分最高的项目。当防御成本超过分配比例时，必须发起 ADR 讨论，以“接受风险”或“削减功能”来解决。</p>
+<p>评估维度：追踪**“成功防御次数”与“因防御措施导致的用户体验受损（例如额外点击、等待时间）的度量”**，确保安全性的提升未过度牺牲可用性。</p>
+<p><strong>未解之惑/待验证</strong><br>
+恶意用户的动机和能力难以准确预测，“发生概率”的估计带有高度主观性。是否存在一种方法，将“防御性工程”视为一种可测量的非功能性需求，并为其设定一个明确的性能指标（例如：每年被成功攻击的次数必须低于 X）？</p>
+<h2>Q5｜如何量化代码中的“偶发复杂性”，并说服利益相关者进行大规模重构？</h2>
+<p>问题陈述<br>
+代码是为人而非机器编写的（SICP）。在实践中，许多代码并非是业务逻辑（本质复杂性）的需要，而是因设计失误、技术债、或不恰当的模式引入的偶发复杂性（Accidental Complexity）。这种复杂性最终表现为维护成本高、缺陷率高。除了主观感受外，有哪些可量化、可追踪的指标能证明“系统已达到必须重构的临界点”，并以此说服不理解技术细节的业务或项目管理层？</p>
+<p><strong>触发出处</strong><br>
+第 1、13 章关于软件工程的本质和软件维护。</p>
+<p><strong>我们查的资料</strong></p>
+<p>代码度量（Code Metrics）：如圈复杂度（Cyclomatic Complexity）、内聚度（Cohesion）和耦合度（Coupling）。</p>
+<p>变更半衰期（Change Half-Life）：一个代码模块的改动导致新缺陷的频率和时间。</p>
+<p>Feynman Problem-Solving Algorithm：将问题写下、思考、然后验证，在软件工程中可映射为“理解成本”。</p>
+<p>LLM提出并建议我实践的计划（临界点量化与成本效益分析）</p>
+<p>临界点指标：</p>
+<p>高复杂度文件逃逸率：追踪圈复杂度超过 N 的文件，其引入的缺陷逃逸到生产环境的比率。</p>
+<p>变更影响范围：单次小需求变更（如修改一个字段）所触及的文件数量中位数。</p>
+<p>“理解时间”：要求新入职或新接手该模块的工程师记录其“首次有效修改”所需的学习/阅读时间。</p>
+<p>成本效益论证：将重构的成本（工时）与重构后预期的收益（如：缺陷修复时间 MTTR 下降 X%、新功能开发效率提升 Y%）进行对比。</p>
+<p>评估维度：重构后，跟踪缺陷密度（每千行代码的缺陷数）和**变更前置时间（LT）**的实际变化，用以验证重构的投资回报率（ROI）。</p>
+<p><strong>未解之惑/待验证</strong><br>
+圈复杂度等指标容易被代码风格或语言特性操纵。是否存在一个更通用的、与业务逻辑关联的“逻辑理解成本”指标，能够排除技术实现的干扰，更真实地反映偶发复杂性？</p></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://blackcatontree.github.io/zhoushilei.github.io">Blog Title</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if(""!=""){
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","blackcatontree/zhoushilei.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+
+
+</script>
+
+
+</html>
