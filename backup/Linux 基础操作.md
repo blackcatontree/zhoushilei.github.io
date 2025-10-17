@@ -10,10 +10,14 @@
 - ls 全部罗列
 - ls |head 列出部分数据
 - ls |head -n 100 列出100条数据
+- ls |wc -l 列出文件夹中一共有多少个文件
 
 ## 文件操作
 - cp A B 将A 的文件复制到B 中
 - cp A/* B 复制A 中的所有文件到A 中
+- ls | head -100 | xargs -I {} cp {} /home/user/destination/ 复制100个到xargs管道中，并到文件夹
+
+
 ## 行动命令
 - ctrl c 中止当前操作
 - ctrl z 暂停当前操作
