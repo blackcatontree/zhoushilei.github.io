@@ -16,6 +16,7 @@
 - pwd 输出当前的文件夹路径
 - cp A B 将A 的文件复制到B 中
 - cp A/* B 复制A 中的所有文件到A 中
+- zip -r data5k.zip /database 讲database文件夹压缩到data5k.zip
 - ls | head -100 | xargs -I {} cp {} /home/user/destination/ 复制100个到xargs管道中，并到文件夹 （复制文件）
 - ls | head -5000 | xargs -I {} cp -r "{}" /home/dataset-assist-0/tmp/zsl/0-database 直接复制文件夹 需要-r
 
