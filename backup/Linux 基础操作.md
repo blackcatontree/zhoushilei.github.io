@@ -16,11 +16,20 @@
 - pwd 输出当前的文件夹路径
 - cp A B 将A 的文件复制到B 中
 - cp A/* B 复制A 中的所有文件到A 中
+- rm -rf data 删除文件
+- tar -xzvf name.tar.gz|head-100  解压出来，看看100个
+- tar -xzvf name.tar.gz 直接解压
 - zip -r data5k.zip /database 讲database文件夹压缩到data5k.zip
 - ls | head -100 | xargs -I {} cp {} /home/user/destination/ 复制100个到xargs管道中，并到文件夹 （复制文件）
 - ls | head -5000 | xargs -I {} cp -r "{}" /home/dataset-assist-0/tmp/zsl/0-database 直接复制文件夹 需要-r
 
  ls |head -1000|xargs -I {} cp {} /home/dataset-assist-0/tmp/zsl/GatorAffinity-DB/GatorAffinity-DB-Fixed
+
+
+## 查看命令
+- df -h /home/dataset 查看当前文件的磁盘容量
+
+
 ## 行动命令
 - ctrl c 中止当前操作
 - kill %1 中断当前序号为1 的项目

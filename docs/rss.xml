@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Sat, 18 Oct 2025 06:22:56 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>Linux 基础操作</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/Linux%20-ji-chu-cao-zuo.html</link><description># Linux 基础操作
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Sat, 18 Oct 2025 06:28:09 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>Linux 基础操作</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/Linux%20-ji-chu-cao-zuo.html</link><description># Linux 基础操作
 ## 1. 进入命令
 - cd +Tab 自动补全
 - cd 后退到home
@@ -17,11 +17,20 @@
 - pwd 输出当前的文件夹路径
 - cp A B 将A 的文件复制到B 中
 - cp A/* B 复制A 中的所有文件到A 中
+- rm -rf data 删除文件
+- tar -xzvf name.tar.gz|head-100  解压出来，看看100个
+- tar -xzvf name.tar.gz 直接解压
 - zip -r data5k.zip /database 讲database文件夹压缩到data5k.zip
 - ls | head -100 | xargs -I {} cp {} /home/user/destination/ 复制100个到xargs管道中，并到文件夹 （复制文件）
 - ls | head -5000 | xargs -I {} cp -r '{}' /home/dataset-assist-0/tmp/zsl/0-database 直接复制文件夹 需要-r
 
  ls |head -1000|xargs -I {} cp {} /home/dataset-assist-0/tmp/zsl/GatorAffinity-DB/GatorAffinity-DB-Fixed
+
+
+## 查看命令
+- df -h /home/dataset 查看当前文件的磁盘容量
+
+
 ## 行动命令
 - ctrl c 中止当前操作
 - kill %1 中断当前序号为1 的项目
