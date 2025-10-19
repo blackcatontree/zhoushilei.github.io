@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Sun, 19 Oct 2025 10:59:54 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251019 选导师</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251019%20-xuan-dao-shi.html</link><description>目标
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Sun, 19 Oct 2025 12:19:58 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251019 选导师</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251019%20-xuan-dao-shi.html</link><description>目标
 
 - [ ] 指导能力强--------年轻老师
-- [ ] 帮助我快速完成论文----近几年有会议文章
+- [x] 帮助我快速完成论文----近几年有会议文章
 - [ ] 有助于工作--------蛋白方向
 - [ ] Aicode 背景
 - [ ] 人性格好
