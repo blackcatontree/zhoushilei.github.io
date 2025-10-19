@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Sun, 19 Oct 2025 09:55:08 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251019 选导师</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251019%20-xuan-dao-shi.html</link><description>目标
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Sun, 19 Oct 2025 10:19:30 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251019 选导师</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251019%20-xuan-dao-shi.html</link><description>目标
 
 - [ ] 指导能力强--------年轻老师
 - [ ] 帮助我快速完成论文----近几年有会议文章
@@ -15,8 +15,8 @@
 目标老师情况
 | 姓名          | 背景          |近三年论文情况|指导方向|性格方面|和自己方向是否相关|拟立项目|
 | ----------- | ----------- | ----------- | ----------- | ----------- |----------- |----------- |
-|刘畅|计算机背景|子刊+顶会（非常好，作为通讯或第一作者）|1.生成式模型基于配体和蛋白质生成构象（MD模拟）； | 严谨、指导性强、时间一般|熟悉MD模拟，可以和蛋白质+配体联系在一起|
-|朱屹恒|数学+计算机背景|顶会（每年一篇，没有通讯）|
+|刘畅|计算机背景|子刊+顶会（非常好，作为通讯或第一作者）|1.生成式模型基于配体和蛋白质生成构象（MD模拟）； | 严谨、指导性强、时间一般|熟悉MD模拟，可以和蛋白质+配体联系在一起|多模态需求下更加统一且灵活的生成式建模框架研究与应用|
+|朱屹恒|数学+计算机背景|顶会（每年一篇，没有通讯）|1.多模态结合信息编码预测kd；2.生成式定向ai设计（强化学习）|热情、指导可能不会手把手|很相关|基于核酸结构适配体AI设计体系|
  。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/20251019%20-xuan-dao-shi.html</guid><pubDate>Sun, 19 Oct 2025 09:54:42 +0000</pubDate></item><item><title>Linux 基础操作</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/Linux%20-ji-chu-cao-zuo.html</link><description># Linux 基础操作
 ## 1. 进入命令
 - cd +Tab 自动补全
