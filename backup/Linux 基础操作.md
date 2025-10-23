@@ -50,14 +50,19 @@ local pdbid=$1 #读取命令行输入，注意没有空格
 python myscrip.py\
 --ligandfile "$ligandfile"\
 ``` 
+- python 的引用
+python 同文件夹下的.py
+python \home\tmp\zsl\全文件下的.py
 
 ls | head -5000 | while read -r item; do
     cp -r "$item" /home/dataset-assist-0/tmp/zsl/0-database
 done
 
 ## 调用函数的方式
+- 定义函数：01_ligand_process() { } # 大括号前需要空格
 - chmod +x your_script.sh #给脚本增加权限
 - ./your_script.sh # 直接运行
+- cat 01_ligand_data.txt | parallel --joblog 02.log --retries 3 --jobs 16 01_ligand_process {} # 最后面的大括号前面需要空格
 # 基本配置
 - 安装GNU parallel
 sudo apt-get install parallel  # Ubuntu/Debian

@@ -62,14 +62,19 @@ local pdbid=$1 #读取命令行输入，注意没有空格
 python myscrip.py\
 --ligandfile '$ligandfile'\
 ``` 
+- python 的引用
+python 同文件夹下的.py
+python \home\tmp\zsl\全文件下的.py
 
 ls | head -5000 | while read -r item; do
     cp -r '$item' /home/dataset-assist-0/tmp/zsl/0-database
 done
 
 ## 调用函数的方式
+- 定义函数：01_ligand_process() { } # 大括号前需要空格
 - chmod +x your_script.sh #给脚本增加权限
 - ./your_script.sh # 直接运行
+- cat 01_ligand_data.txt | parallel --joblog 02.log --retries 3 --jobs 16 01_ligand_process {} # 最后面的大括号前面需要空格
 # 基本配置
 - 安装GNU parallel
 sudo apt-get install parallel  # Ubuntu/Debian
@@ -130,14 +135,19 @@ local pdbid=$1 #读取命令行输入，注意没有空格
 python myscrip.py\
 --ligandfile '$ligandfile'\
 ``` 
+- python 的引用
+python 同文件夹下的.py
+python \home\tmp\zsl\全文件下的.py
 
 ls | head -5000 | while read -r item; do
     cp -r '$item' /home/dataset-assist-0/tmp/zsl/0-database
 done
 
 ## 调用函数的方式
+- 定义函数：01_ligand_process() { } # 大括号前需要空格
 - chmod +x your_script.sh #给脚本增加权限
 - ./your_script.sh # 直接运行
+- cat 01_ligand_data.txt | parallel --joblog 02.log --retries 3 --jobs 16 01_ligand_process {} # 最后面的大括号前面需要空格
 # 基本配置
 - 安装GNU parallel
 sudo apt-get install parallel  # Ubuntu/Debian
@@ -301,13 +311,20 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="highlight highlight-source-powershell"><pre class="notranslate">local pdbid<span class="pl-k">=</span><span class="pl-smi">$1</span> <span class="pl-c"><span class="pl-c">#</span>读取命令行输入，注意没有空格</span>
 python myscrip.py\
 <span class="pl-k">--</span>ligandfile <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$ligandfile</span><span class="pl-pds">"</span></span>\</pre></div>
+<ul>
+<li>python 的引用<br>
+python 同文件夹下的.py<br>
+python \home\tmp\zsl\全文件下的.py</li>
+</ul>
 <p>ls | head -5000 | while read -r item; do<br>
 cp -r "$item" /home/dataset-assist-0/tmp/zsl/0-database<br>
 done</p>
 <h2>调用函数的方式</h2>
 <ul>
+<li>定义函数：01_ligand_process() { } # 大括号前需要空格</li>
 <li>chmod +x your_script.sh #给脚本增加权限</li>
 <li>./your_script.sh # 直接运行</li>
+<li>cat 01_ligand_data.txt | parallel --joblog 02.log --retries 3 --jobs 16 01_ligand_process {} # 最后面的大括号前面需要空格</li>
 </ul>
 <h1>基本配置</h1>
 <ul>
