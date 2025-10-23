@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Thu, 23 Oct 2025 15:33:00 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>windows命令行的操作方法</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/windows-ming-ling-xing-de-cao-zuo-fang-fa.html</link><description> Get-ChildItem -Directory | Select-Object Name | Out-File -FilePath folder_list.txt -Encoding UTF8 
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Thu, 23 Oct 2025 15:42:29 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>windows命令行的操作方法</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/windows-ming-ling-xing-de-cao-zuo-fang-fa.html</link><description> Get-ChildItem -Directory | Select-Object Name | Out-File -FilePath folder_list.txt -Encoding UTF8 
 将当前文件夹中的所有文件夹的名字复制到一个文件中，并且将其放置在该文件夹下 编码方式采用UTF8的方式。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/windows-ming-ling-xing-de-cao-zuo-fang-fa.html</guid><pubDate>Wed, 22 Oct 2025 15:39:22 +0000</pubDate></item><item><title>20251019 选导师</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251019%20-xuan-dao-shi.html</link><description>目标
 
 - [ ] 指导能力强--------年轻老师
@@ -71,6 +71,13 @@ ps. 3个月的ai训练营，相当于让你熟悉科研范式，现在是周泽�
 - ctrl z 暂停当前操作
 
 ## 基础函数操作
+- echo 'my script begin to run!' # 打印函数
+- python 命令行输入：
+```powershell
+local pdbid=$1 #读取命令行输入，注意没有空格
+python myscrip.py\
+--ligandfile '$ligandfile'\
+``` 
 
 ls | head -5000 | while read -r item; do
     cp -r '$item' /home/dataset-assist-0/tmp/zsl/0-database
@@ -82,5 +89,5 @@ done
 # 基本配置
 - 安装GNU parallel
 sudo apt-get install parallel  # Ubuntu/Debian
-brew install parallel          # macOS。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/Linux%20-ji-chu-cao-zuo.html</guid><pubDate>Fri, 17 Oct 2025 17:35:55 +0000</pubDate></item><item><title>20251017 《现代软件工程》课程 个人博客作业 1——就《现代软件工程》提 5 个问题</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251017%20%E3%80%8A-xian-dai-ruan-jian-gong-cheng-%E3%80%8B-ke-cheng-%20-ge-ren-bo-ke-zuo-ye-%201%E2%80%94%E2%80%94-jiu-%E3%80%8A-xian-dai-ruan-jian-gong-cheng-%E3%80%8B-ti-%205%20-ge-wen-ti.html</link><description>Part B｜快速通读《构建之法》后的五个问题
+。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/Linux%20-ji-chu-cao-zuo.html</guid><pubDate>Fri, 17 Oct 2025 17:35:55 +0000</pubDate></item><item><title>20251017 《现代软件工程》课程 个人博客作业 1——就《现代软件工程》提 5 个问题</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251017%20%E3%80%8A-xian-dai-ruan-jian-gong-cheng-%E3%80%8B-ke-cheng-%20-ge-ren-bo-ke-zuo-ye-%201%E2%80%94%E2%80%94-jiu-%E3%80%8A-xian-dai-ruan-jian-gong-cheng-%E3%80%8B-ti-%205%20-ge-wen-ti.html</link><description>Part B｜快速通读《构建之法》后的五个问题
 说明：每个问题均包含“问题陈述｜触发出处｜我们查的资料(显然,这里有LLM辅助写作)｜LLM提出并建议我实践的计划｜未解之惑/待验证”，并尽量给出可复用的评估维度或实验设计思路。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/20251017%20%E3%80%8A-xian-dai-ruan-jian-gong-cheng-%E3%80%8B-ke-cheng-%20-ge-ren-bo-ke-zuo-ye-%201%E2%80%94%E2%80%94-jiu-%E3%80%8A-xian-dai-ruan-jian-gong-cheng-%E3%80%8B-ti-%205%20-ge-wen-ti.html</guid><pubDate>Fri, 17 Oct 2025 14:35:39 +0000</pubDate></item><item><title>20251017 博客测试</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251017%20-bo-ke-ce-shi.html</link><description>Hello world。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/20251017%20-bo-ke-ce-shi.html</guid><pubDate>Fri, 17 Oct 2025 14:27:05 +0000</pubDate></item></channel></rss>

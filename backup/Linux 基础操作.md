@@ -43,6 +43,13 @@
 - ctrl z 暂停当前操作
 
 ## 基础函数操作
+- echo "my script begin to run!" # 打印函数
+- python 命令行输入：
+```powershell
+local pdbid=$1 #读取命令行输入，注意没有空格
+python myscrip.py\
+--ligandfile "$ligandfile"\
+``` 
 
 ls | head -5000 | while read -r item; do
     cp -r "$item" /home/dataset-assist-0/tmp/zsl/0-database
@@ -54,4 +61,3 @@ done
 # 基本配置
 - 安装GNU parallel
 sudo apt-get install parallel  # Ubuntu/Debian
-brew install parallel          # macOS
