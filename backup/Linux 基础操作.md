@@ -1,5 +1,5 @@
 # Linux 基础操作
-## 1. 进入命令
+##  进入命令
 - cd +Tab 自动补全
 - cd 后退到home
 - cd .. 后退一格
@@ -19,11 +19,17 @@
 - rm -rf data 删除文件
 - tar -xzvf name.tar.gz|head-100  解压出来，看看100个
 - tar -xzvf name.tar.gz 直接解压
-- zip -r data5k.zip /database 讲database文件夹压缩到data5k.zip
+- sudo apt update
+- sudo apt install p7zip-full #7z安装
+- 7z x 01_ligand_process.7z # 解压7z文件
+- 7z x 01_ligand_process.7z -o/path/to/destination # 解压到指定目录
+- 7z l 01_ligand_process.7z # 列出压缩包的内容
+- 7z t 01_ligand_process.7z # 测试压缩包的完整性
+- zip -r data5k.zip /database 将database文件夹压缩到data5k.zip
 - ls | head -100 | xargs -I {} cp {} /home/user/destination/ 复制100个到xargs管道中，并到文件夹 （复制文件）
 - ls | head -5000 | xargs -I {} cp -r "{}" /home/dataset-assist-0/tmp/zsl/0-database 直接复制文件夹 需要-r
 
- ls |head -1000|xargs -I {} cp {} /home/dataset-assist-0/tmp/zsl/GatorAffinity-DB/GatorAffinity-DB-Fixed
+ - ls |head -1000|xargs -I {} cp {} /home/dataset-assist-0/tmp/zsl/GatorAffinity-DB/GatorAffinity-DB-Fixed
 
 
 ## 查看命令
@@ -41,3 +47,7 @@
 ls | head -5000 | while read -r item; do
     cp -r "$item" /home/dataset-assist-0/tmp/zsl/0-database
 done
+
+## 调用函数的方式
+- chmod +x your_script.sh #给脚本增加权限
+- ./your_script.sh # 直接运行
