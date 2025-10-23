@@ -61,3 +61,6 @@ done
 # 基本配置
 - 安装GNU parallel
 sudo apt-get install parallel  # Ubuntu/Debian
+- 安装文件转化
+sudo apt install dos2unix
+dos2unix mydoc.txt
