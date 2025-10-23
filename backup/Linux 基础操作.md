@@ -51,3 +51,7 @@ done
 ## 调用函数的方式
 - chmod +x your_script.sh #给脚本增加权限
 - ./your_script.sh # 直接运行
+# 基本配置
+- 安装GNU parallel
+sudo apt-get install parallel  # Ubuntu/Debian
+brew install parallel          # macOS
