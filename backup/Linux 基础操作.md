@@ -69,3 +69,7 @@ sudo apt-get install parallel  # Ubuntu/Debian
 - 安装文件转化
 sudo apt install dos2unix
 dos2unix mydoc.txt
+## 单文件txt操作
+- cp 01_ligand_data.txt 01_ligand_data.txt.backup #备份原文件
+- sed -i 's/[[:space:]]//g' 01_ligand_data.txt # 移除所有空白字符（空格、制表符）
+- cat 01_ligand_data.txt | head -10 #列出来清理之后的操作

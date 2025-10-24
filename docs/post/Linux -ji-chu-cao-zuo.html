@@ -81,7 +81,10 @@ sudo apt-get install parallel  # Ubuntu/Debian
 - 安装文件转化
 sudo apt install dos2unix
 dos2unix mydoc.txt
-。">
+## 单文件txt操作
+- cp 01_ligand_data.txt 01_ligand_data.txt.backup #备份原文件
+- sed -i 's/[[:space:]]//g' 01_ligand_data.txt # 移除所有空白字符（空格、制表符）
+- cat 01_ligand_data.txt | head -10 #列出来清理之后的操作。">
 <meta property="og:title" content="Linux 基础操作">
 <meta property="og:description" content="# Linux 基础操作
 ##  进入命令
@@ -154,7 +157,10 @@ sudo apt-get install parallel  # Ubuntu/Debian
 - 安装文件转化
 sudo apt install dos2unix
 dos2unix mydoc.txt
-。">
+## 单文件txt操作
+- cp 01_ligand_data.txt 01_ligand_data.txt.backup #备份原文件
+- sed -i 's/[[:space:]]//g' 01_ligand_data.txt # 移除所有空白字符（空格、制表符）
+- cat 01_ligand_data.txt | head -10 #列出来清理之后的操作。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://blackcatontree.github.io/zhoushilei.github.io/post/Linux%20-ji-chu-cao-zuo.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/114755056?v=4">
@@ -333,6 +339,12 @@ sudo apt-get install parallel  # Ubuntu/Debian</li>
 <li>安装文件转化<br>
 sudo apt install dos2unix<br>
 dos2unix mydoc.txt</li>
+</ul>
+<h2>单文件txt操作</h2>
+<ul>
+<li>cp 01_ligand_data.txt 01_ligand_data.txt.backup #备份原文件</li>
+<li>sed -i 's/[[:space:]]//g' 01_ligand_data.txt # 移除所有空白字符（空格、制表符）</li>
+<li>cat 01_ligand_data.txt | head -10 #列出来清理之后的操作</li>
 </ul></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
