@@ -5,6 +5,7 @@
 - cd .. 后退一格
 - cd ../ 后退两格
 - cd / 后退到根目录
+- pwd 当前所处文件的绝对路径
 
 ## 展示命令
 - ls 全部罗列
@@ -63,6 +64,7 @@ done
 - chmod +x your_script.sh #给脚本增加权限
 - ./your_script.sh # 直接运行
 - cat 01_ligand_data.txt | parallel --joblog 02.log --retries 3 --jobs 16 01_ligand_process {} # 最后面的大括号前面需要空格
+- base_directory=$(pwd)
 # 基本配置
 - 安装GNU parallel
 sudo apt-get install parallel  # Ubuntu/Debian

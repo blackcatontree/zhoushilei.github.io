@@ -17,6 +17,7 @@
 - cd .. 后退一格
 - cd ../ 后退两格
 - cd / 后退到根目录
+- pwd 当前所处文件的绝对路径
 
 ## 展示命令
 - ls 全部罗列
@@ -75,6 +76,7 @@ done
 - chmod +x your_script.sh #给脚本增加权限
 - ./your_script.sh # 直接运行
 - cat 01_ligand_data.txt | parallel --joblog 02.log --retries 3 --jobs 16 01_ligand_process {} # 最后面的大括号前面需要空格
+- base_directory=$(pwd)
 # 基本配置
 - 安装GNU parallel
 sudo apt-get install parallel  # Ubuntu/Debian
@@ -93,6 +95,7 @@ dos2unix mydoc.txt
 - cd .. 后退一格
 - cd ../ 后退两格
 - cd / 后退到根目录
+- pwd 当前所处文件的绝对路径
 
 ## 展示命令
 - ls 全部罗列
@@ -151,6 +154,7 @@ done
 - chmod +x your_script.sh #给脚本增加权限
 - ./your_script.sh # 直接运行
 - cat 01_ligand_data.txt | parallel --joblog 02.log --retries 3 --jobs 16 01_ligand_process {} # 最后面的大括号前面需要空格
+- base_directory=$(pwd)
 # 基本配置
 - 安装GNU parallel
 sudo apt-get install parallel  # Ubuntu/Debian
@@ -239,6 +243,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>cd .. 后退一格</li>
 <li>cd ../ 后退两格</li>
 <li>cd / 后退到根目录</li>
+<li>pwd 当前所处文件的绝对路径</li>
 </ul>
 <h2>展示命令</h2>
 <ul>
@@ -331,6 +336,7 @@ done</p>
 <li>chmod +x your_script.sh #给脚本增加权限</li>
 <li>./your_script.sh # 直接运行</li>
 <li>cat 01_ligand_data.txt | parallel --joblog 02.log --retries 3 --jobs 16 01_ligand_process {} # 最后面的大括号前面需要空格</li>
+<li>base_directory=$(pwd)</li>
 </ul>
 <h1>基本配置</h1>
 <ul>

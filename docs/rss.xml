@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Fri, 24 Oct 2025 05:50:41 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>特异性靶点小分子药物筛选</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/te-yi-xing-ba-dian-xiao-fen-zi-yao-wu-shai-xuan.html</link><description>## 蛋白质口袋划分
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Fri, 24 Oct 2025 16:28:21 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>特异性靶点小分子药物筛选</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/te-yi-xing-ba-dian-xiao-fen-zi-yao-wu-shai-xuan.html</link><description>## 蛋白质口袋划分
 选取口袋部分，6A ,8A ,
 球形/正方形
 ps. 一定按照文献中的数据进行
@@ -103,6 +103,7 @@ ps. 3个月的ai训练营，相当于让你熟悉科研范式，现在是周泽�
 - cd .. 后退一格
 - cd ../ 后退两格
 - cd / 后退到根目录
+- pwd 当前所处文件的绝对路径
 
 ## 展示命令
 - ls 全部罗列
@@ -161,6 +162,7 @@ done
 - chmod +x your_script.sh #给脚本增加权限
 - ./your_script.sh # 直接运行
 - cat 01_ligand_data.txt | parallel --joblog 02.log --retries 3 --jobs 16 01_ligand_process {} # 最后面的大括号前面需要空格
+- base_directory=$(pwd)
 # 基本配置
 - 安装GNU parallel
 sudo apt-get install parallel  # Ubuntu/Debian
