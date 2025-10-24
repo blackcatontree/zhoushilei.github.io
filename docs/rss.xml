@@ -1,5 +1,22 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Fri, 24 Oct 2025 05:06:48 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>python基础操作</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/python-ji-chu-cao-zuo.html</link><description>##  linux 下 python 版本和位置查看
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Fri, 24 Oct 2025 05:31:50 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>特异性靶点小分子药物筛选</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/te-yi-xing-ba-dian-xiao-fen-zi-yao-wu-shai-xuan.html</link><description>## 蛋白质口袋划分
+选取口袋部分，6A ,8A ,
+球形/正方形
+ps. 一定按照文献中的数据进行
+
+## 从数据库中下载mol2
+400millions 的药物分子去和蛋白质口袋进行作用
+
+## 筛选出TOP1K的数据
+
+
+## 查看TOP100/20/50里面有没有我们的阳性分子
+我们有pos阳性的分子 也有neg阴性的分子
+
+
+注意：
+1. 我们特征提取时可以将数据提取出来之后直接进行，不需要重复进行计算
+2. 大规模的特征提取，可以采用faceholk的方式进行。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/te-yi-xing-ba-dian-xiao-fen-zi-yao-wu-shai-xuan.html</guid><pubDate>Fri, 24 Oct 2025 05:31:15 +0000</pubDate></item><item><title>python基础操作</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/python-ji-chu-cao-zuo.html</link><description>##  linux 下 python 版本和位置查看
 - which python #查找系统中有那些python
 - ls /usr/bin/python* # 列出所有的python文件
 - ls /usr/bin/python* # 系统python版本查看
