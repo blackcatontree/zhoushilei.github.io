@@ -14,7 +14,8 @@
 ```shell
 # 强制清除文件
 rm -f name.txt # 强制清除文件
-
+# 文本检索
+ligand_charge=$(grep $pdbid /home/zsl/ligand.txt | awk '{print $2}') #|前检索出的行，|后输出第二列
 # 批处理操作
 cat batch.txt | parallel --env _ --joblog 02.log --retries 3 --jobs 16 process_pdbid {} #批处理操作（base txt 文档）
 find '/home/tmp/zsl/data' -maxdepth 1 -type d -name 'GID*' | sort | while read dir; do
@@ -67,7 +68,8 @@ export -f 02_protein_process #将函数导入到shell环境中
 ```shell
 # 强制清除文件
 rm -f name.txt # 强制清除文件
-
+# 文本检索
+ligand_charge=$(grep $pdbid /home/zsl/ligand.txt | awk '{print $2}') #|前检索出的行，|后输出第二列
 # 批处理操作
 cat batch.txt | parallel --env _ --joblog 02.log --retries 3 --jobs 16 process_pdbid {} #批处理操作（base txt 文档）
 find '/home/tmp/zsl/data' -maxdepth 1 -type d -name 'GID*' | sort | while read dir; do
@@ -188,7 +190,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="markdown-body" id="postBody"><h2>基础操作</h2>
 <div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 强制清除文件</span>
 rm -f name.txt <span class="pl-c"><span class="pl-c">#</span> 强制清除文件</span>
-
+<span class="pl-c"><span class="pl-c">#</span> 文本检索</span>
+ligand_charge=<span class="pl-s"><span class="pl-pds">$(</span>grep <span class="pl-smi">$pdbid</span> /home/zsl/ligand.txt <span class="pl-k">|</span> awk <span class="pl-s"><span class="pl-pds">"</span>{print <span class="pl-smi">$2</span>}<span class="pl-pds">"</span></span><span class="pl-pds">)</span></span> <span class="pl-c"><span class="pl-c">#</span>|前检索出的行，|后输出第二列</span>
 <span class="pl-c"><span class="pl-c">#</span> 批处理操作</span>
 cat batch.txt <span class="pl-k">|</span> parallel --env _ --joblog 02.log --retries 3 --jobs 16 process_pdbid {} <span class="pl-c"><span class="pl-c">#</span>批处理操作（base txt 文档）</span>
 find <span class="pl-s"><span class="pl-pds">"</span>/home/tmp/zsl/data<span class="pl-pds">"</span></span> -maxdepth 1 -type d -name <span class="pl-s"><span class="pl-pds">"</span>GID*<span class="pl-pds">"</span></span> <span class="pl-k">|</span> sort <span class="pl-k">|</span> <span class="pl-k">while</span> <span class="pl-c1">read</span> dir<span class="pl-k">;</span> <span class="pl-k">do</span>
