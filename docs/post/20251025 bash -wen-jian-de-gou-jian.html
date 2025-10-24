@@ -13,7 +13,11 @@
 <meta name="description" content="## 基础操作
 ```shell
 rm -f name.txt # 强制清除文件
-cat batch.txt | parallel --env _ --joblog 02.log --retries 3 --jobs 16 process_pdbid {} #批处理操作
+cat batch.txt | parallel --env _ --joblog 02.log --retries 3 --jobs 16 process_pdbid {} #批处理操作（base txt 文档）
+find '/home/tmp/zsl/data' -maxdepth 1 -type d -name 'GID*' | sort | while read dir; do
+   pdbid=$(basename'$dir')
+   echo '$pdbid'
+done | parallel --joblog 02.log --retries 3 --jobs 16 01_ligand_process{}
 ```
 ## IF语句
 ``` shell
@@ -54,7 +58,11 @@ export -f 02_protein_process #将函数导入到shell环境中
 <meta property="og:description" content="## 基础操作
 ```shell
 rm -f name.txt # 强制清除文件
-cat batch.txt | parallel --env _ --joblog 02.log --retries 3 --jobs 16 process_pdbid {} #批处理操作
+cat batch.txt | parallel --env _ --joblog 02.log --retries 3 --jobs 16 process_pdbid {} #批处理操作（base txt 文档）
+find '/home/tmp/zsl/data' -maxdepth 1 -type d -name 'GID*' | sort | while read dir; do
+   pdbid=$(basename'$dir')
+   echo '$pdbid'
+done | parallel --joblog 02.log --retries 3 --jobs 16 01_ligand_process{}
 ```
 ## IF语句
 ``` shell
@@ -163,7 +171,11 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 <div class="markdown-body" id="postBody"><h2>基础操作</h2>
 <div class="highlight highlight-source-shell"><pre class="notranslate">rm -f name.txt <span class="pl-c"><span class="pl-c">#</span> 强制清除文件</span>
-cat batch.txt <span class="pl-k">|</span> parallel --env _ --joblog 02.log --retries 3 --jobs 16 process_pdbid {} <span class="pl-c"><span class="pl-c">#</span>批处理操作</span></pre></div>
+cat batch.txt <span class="pl-k">|</span> parallel --env _ --joblog 02.log --retries 3 --jobs 16 process_pdbid {} <span class="pl-c"><span class="pl-c">#</span>批处理操作（base txt 文档）</span>
+find <span class="pl-s"><span class="pl-pds">"</span>/home/tmp/zsl/data<span class="pl-pds">"</span></span> -maxdepth 1 -type d -name <span class="pl-s"><span class="pl-pds">"</span>GID*<span class="pl-pds">"</span></span> <span class="pl-k">|</span> sort <span class="pl-k">|</span> <span class="pl-k">while</span> <span class="pl-c1">read</span> dir<span class="pl-k">;</span> <span class="pl-k">do</span>
+   pdbid=<span class="pl-s"><span class="pl-pds">$(</span>basename<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$dir</span><span class="pl-pds">"</span></span><span class="pl-pds">)</span></span>
+   <span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$pdbid</span><span class="pl-pds">"</span></span>
+<span class="pl-k">done</span> <span class="pl-k">|</span> parallel --joblog 02.log --retries 3 --jobs 16 01_ligand_process{}</pre></div>
 <h2>IF语句</h2>
 <div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-k">if</span> [[ <span class="pl-smi">$?</span> <span class="pl-k">-eq</span> 0]]<span class="pl-k">;</span> <span class="pl-k">then</span>
     gmx editconf -f <span class="pl-smi">${pdbid}</span>_protein.gro -o <span class="pl-smi">${pdbid}</span>_protein_H.pdb -nobackup <span class="pl-k">&gt;</span> /dev/null <span class="pl-k">2&gt;&amp;1</span> <span class="pl-c"><span class="pl-c">#</span>gro 转化为pdb文件，现在已经去掉了H</span>
