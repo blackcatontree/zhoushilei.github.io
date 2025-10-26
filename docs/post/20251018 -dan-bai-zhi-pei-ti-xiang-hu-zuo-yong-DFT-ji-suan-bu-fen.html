@@ -17,6 +17,10 @@ conda activate aidd310
 sudo apt-get update #更新
 sudo apt-get install gromacs #安装
 ```
+2.xtb计算软件安装
+```shell
+conda install xtb -c conda-forge
+```
 文件列表
 - 01_process_mo2 : 读入配体的数据，通过mol2进行电荷合理/不合理的筛选，筛选出来的文件保存在logfile中，不合理的保存在wrong中
 - 02_addchian: 读入蛋白质，计算残基的电荷，并对链进行标识符的重新分配
@@ -28,6 +32,10 @@ sudo apt-get install gromacs #安装
 conda activate aidd310
 sudo apt-get update #更新
 sudo apt-get install gromacs #安装
+```
+2.xtb计算软件安装
+```shell
+conda install xtb -c conda-forge
 ```
 文件列表
 - 01_process_mo2 : 读入配体的数据，通过mol2进行电荷合理/不合理的筛选，筛选出来的文件保存在logfile中，不合理的保存在wrong中
@@ -110,6 +118,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="highlight highlight-source-shell"><pre class="notranslate">conda activate aidd310
 sudo apt-get update <span class="pl-c"><span class="pl-c">#</span>更新</span>
 sudo apt-get install gromacs <span class="pl-c"><span class="pl-c">#</span>安装</span></pre></div>
+<p>2.xtb计算软件安装</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">conda install xtb -c conda-forge</pre></div>
 <p>文件列表</p>
 <ul>
 <li>01_process_mo2 : 读入配体的数据，通过mol2进行电荷合理/不合理的筛选，筛选出来的文件保存在logfile中，不合理的保存在wrong中</li>
