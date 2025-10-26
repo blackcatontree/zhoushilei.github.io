@@ -24,6 +24,18 @@
 - ls |head 列出部分数据
 - ls |head -n 100 列出100条数据
 - ls |wc -l 列出文件夹中一共有多少个文件
+- head -n1 .chag 显示.chag的第一行数据
+
+## 简单计算
+- total_charge=$(echo '$protein_charge+$ligand_charge'|bc) 表示浮点数运算，bc可以用来处理浮点数
+- sed 可以对文本进行查找、替换、删除
+- sed -i '1s/.*/$total_charge/' .chrg 在第一行进行操作 ，.*表示匹配整行 $total_charge 替换为总电荷值，.chrg表示应用在这个文件上
+- 注意如果total_charge 是 -1 会报错
+- 可以更换为其他分割符 sed -i '1s#.*#$total_charge# .CHRG'
+```shell
+    sed -i '1s#.*#$total_charge#' .CHRG # 对第一行进行整体替代
+    sed -i '$s#$#$ligand_charge#' .CHRG # $匹配模式是行尾
+```
 
 ## 文件操作
 - pwd 输出当前的文件夹路径
@@ -102,6 +114,18 @@ dos2unix mydoc.txt
 - ls |head 列出部分数据
 - ls |head -n 100 列出100条数据
 - ls |wc -l 列出文件夹中一共有多少个文件
+- head -n1 .chag 显示.chag的第一行数据
+
+## 简单计算
+- total_charge=$(echo '$protein_charge+$ligand_charge'|bc) 表示浮点数运算，bc可以用来处理浮点数
+- sed 可以对文本进行查找、替换、删除
+- sed -i '1s/.*/$total_charge/' .chrg 在第一行进行操作 ，.*表示匹配整行 $total_charge 替换为总电荷值，.chrg表示应用在这个文件上
+- 注意如果total_charge 是 -1 会报错
+- 可以更换为其他分割符 sed -i '1s#.*#$total_charge# .CHRG'
+```shell
+    sed -i '1s#.*#$total_charge#' .CHRG # 对第一行进行整体替代
+    sed -i '$s#$#$ligand_charge#' .CHRG # $匹配模式是行尾
+```
 
 ## 文件操作
 - pwd 输出当前的文件夹路径
@@ -251,7 +275,18 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>ls |head 列出部分数据</li>
 <li>ls |head -n 100 列出100条数据</li>
 <li>ls |wc -l 列出文件夹中一共有多少个文件</li>
+<li>head -n1 .chag 显示.chag的第一行数据</li>
 </ul>
+<h2>简单计算</h2>
+<ul>
+<li>total_charge=$(echo "$protein_charge+$ligand_charge"|bc) 表示浮点数运算，bc可以用来处理浮点数</li>
+<li>sed 可以对文本进行查找、替换、删除</li>
+<li>sed -i "1s/.*/$total_charge/" .chrg 在第一行进行操作 ，.*表示匹配整行 $total_charge 替换为总电荷值，.chrg表示应用在这个文件上</li>
+<li>注意如果total_charge 是 -1 会报错</li>
+<li>可以更换为其他分割符 sed -i "1s#.*#$total_charge# .CHRG"</li>
+</ul>
+<div class="highlight highlight-source-shell"><pre class="notranslate">    sed -i <span class="pl-s"><span class="pl-pds">"</span>1s#.*#<span class="pl-smi">$total_charge</span>#<span class="pl-pds">"</span></span> .CHRG <span class="pl-c"><span class="pl-c">#</span> 对第一行进行整体替代</span>
+    sed -i <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$s</span>#<span class="pl-smi">$#</span><span class="pl-smi">$ligand_charge</span>#<span class="pl-pds">"</span></span> .CHRG <span class="pl-c"><span class="pl-c">#</span> $匹配模式是行尾</span></pre></div>
 <h2>文件操作</h2>
 <ul>
 <li>

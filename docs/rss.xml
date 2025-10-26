@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Sat, 25 Oct 2025 03:21:18 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251025 bash 文件的构建</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251025%20bash%20-wen-jian-de-gou-jian.html</link><description>## 基础操作
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Sun, 26 Oct 2025 10:19:47 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251025 bash 文件的构建</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251025%20bash%20-wen-jian-de-gou-jian.html</link><description>## 基础操作
 ```shell
 # 强制清除文件
 rm -f name.txt # 强制清除文件
@@ -170,6 +170,18 @@ sudo apt-get install gromacs #安装
 - ls |head 列出部分数据
 - ls |head -n 100 列出100条数据
 - ls |wc -l 列出文件夹中一共有多少个文件
+- head -n1 .chag 显示.chag的第一行数据
+
+## 简单计算
+- total_charge=$(echo '$protein_charge+$ligand_charge'|bc) 表示浮点数运算，bc可以用来处理浮点数
+- sed 可以对文本进行查找、替换、删除
+- sed -i '1s/.*/$total_charge/' .chrg 在第一行进行操作 ，.*表示匹配整行 $total_charge 替换为总电荷值，.chrg表示应用在这个文件上
+- 注意如果total_charge 是 -1 会报错
+- 可以更换为其他分割符 sed -i '1s#.*#$total_charge# .CHRG'
+```shell
+    sed -i '1s#.*#$total_charge#' .CHRG # 对第一行进行整体替代
+    sed -i '$s#$#$ligand_charge#' .CHRG # $匹配模式是行尾
+```
 
 ## 文件操作
 - pwd 输出当前的文件夹路径

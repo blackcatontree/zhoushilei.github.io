@@ -12,6 +12,18 @@
 - ls |head 列出部分数据
 - ls |head -n 100 列出100条数据
 - ls |wc -l 列出文件夹中一共有多少个文件
+- head -n1 .chag 显示.chag的第一行数据
+
+## 简单计算
+- total_charge=$(echo "$protein_charge+$ligand_charge"|bc) 表示浮点数运算，bc可以用来处理浮点数
+- sed 可以对文本进行查找、替换、删除
+- sed -i "1s/.*/$total_charge/" .chrg 在第一行进行操作 ，.*表示匹配整行 $total_charge 替换为总电荷值，.chrg表示应用在这个文件上
+- 注意如果total_charge 是 -1 会报错
+- 可以更换为其他分割符 sed -i "1s#.*#$total_charge# .CHRG"
+```shell
+    sed -i "1s#.*#$total_charge#" .CHRG # 对第一行进行整体替代
+    sed -i "$s#$#$ligand_charge#" .CHRG # $匹配模式是行尾
+```
 
 ## 文件操作
 - pwd 输出当前的文件夹路径
