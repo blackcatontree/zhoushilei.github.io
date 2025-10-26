@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Sun, 26 Oct 2025 20:34:33 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251025 bash 文件的构建</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251025%20bash%20-wen-jian-de-gou-jian.html</link><description>## 基础操作
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Sun, 26 Oct 2025 20:35:36 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251025 bash 文件的构建</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251025%20bash%20-wen-jian-de-gou-jian.html</link><description>## 基础操作
 ```shell
 # 强制清除文件
 rm -f name.txt # 强制清除文件
@@ -157,7 +157,30 @@ sudo apt-get install gromacs #安装
 ```shell
 conda install xtb -c conda-forge
 ```
-文件列表
+安装完成之后
+```shell
+xtb --version
+```
+
+完成之后显示
+```
+Executing transaction: done                                                                                                                                                                                                             
+(/home/dataset-assist-0/tmp/zsl/conda_envs/aidd310) batchcom@dev-env-n651q-ee82f9:/home/dataset-assist-0/tmp/zsl/6-test/data_change/gfnff/jobs/GID110022$ xtb --version
+      -----------------------------------------------------------                                                                                                                                                                       
+     |                   =====================                   |                                                                                                                                                                      
+     |                           x T B                           |                                                                                                                                                                      
+     |                   =====================                   |     
+     |                         S. Grimme                         |     
+     |          Mulliken Center for Theoretical Chemistry        |     
+     |                    University of Bonn                     |     
+      -----------------------------------------------------------      
+
+   * xtb version 6.7.1 (edcfbbe) compiled by 'conda@c0858423619e' on 2025-09-04
+
+normal termination of xtb
+```
+
+##文件列表
 - 01_process_mo2 : 读入配体的数据，通过mol2进行电荷合理/不合理的筛选，筛选出来的文件保存在logfile中，不合理的保存在wrong中
 - 02_addchian: 读入蛋白质，计算残基的电荷，并对链进行标识符的重新分配
 - 02_dump_protein:。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/20251018%20-dan-bai-zhi-pei-ti-xiang-hu-zuo-yong-DFT-ji-suan-bu-fen.html</guid><pubDate>Sat, 18 Oct 2025 11:24:40 +0000</pubDate></item><item><title>Linux 基础操作</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/Linux%20-ji-chu-cao-zuo.html</link><description># Linux 基础操作
