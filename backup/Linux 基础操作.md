@@ -48,6 +48,9 @@
 3.zip
 ```shell 
 - zip -r data5k.zip /database 将database文件夹压缩到data5k.zip
+- unzip name.zip
+- unzip data.zip -d /home/user/extracted/ #解压到指定目录
+- unzip -l archive.zip #查看压缩包的内容
 ```
 
 - ls | head -100 | xargs -I {} cp {} /home/user/destination/ 复制100个到xargs管道中，并到文件夹 （复制文件）

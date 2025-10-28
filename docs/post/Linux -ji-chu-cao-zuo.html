@@ -60,6 +60,9 @@
 3.zip
 ```shell 
 - zip -r data5k.zip /database 将database文件夹压缩到data5k.zip
+- unzip name.zip
+- unzip data.zip -d /home/user/extracted/ #解压到指定目录
+- unzip -l archive.zip #查看压缩包的内容
 ```
 
 - ls | head -100 | xargs -I {} cp {} /home/user/destination/ 复制100个到xargs管道中，并到文件夹 （复制文件）
@@ -161,6 +164,9 @@ dos2unix mydoc.txt
 3.zip
 ```shell 
 - zip -r data5k.zip /database 将database文件夹压缩到data5k.zip
+- unzip name.zip
+- unzip data.zip -d /home/user/extracted/ #解压到指定目录
+- unzip -l archive.zip #查看压缩包的内容
 ```
 
 - ls | head -100 | xargs -I {} cp {} /home/user/destination/ 复制100个到xargs管道中，并到文件夹 （复制文件）
@@ -330,7 +336,10 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 - 7z l 01_ligand_process.7z <span class="pl-c"><span class="pl-c">#</span> 列出压缩包的内容</span>
 - 7z t 01_ligand_process.7z <span class="pl-c"><span class="pl-c">#</span> 测试压缩包的完整性</span></pre></div>
 <p>3.zip</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">- zip -r data5k.zip /database 将database文件夹压缩到data5k.zip</pre></div>
+<div class="highlight highlight-source-shell"><pre class="notranslate">- zip -r data5k.zip /database 将database文件夹压缩到data5k.zip
+- unzip name.zip
+- unzip data.zip -d /home/user/extracted/ <span class="pl-c"><span class="pl-c">#</span>解压到指定目录</span>
+- unzip -l archive.zip <span class="pl-c"><span class="pl-c">#</span>查看压缩包的内容</span></pre></div>
 <ul>
 <li>
 <p>ls | head -100 | xargs -I {} cp {} /home/user/destination/ 复制100个到xargs管道中，并到文件夹 （复制文件）</p>
