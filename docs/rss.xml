@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Tue, 28 Oct 2025 18:19:20 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251029 邓岳：院长有约</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20-deng-yue-%EF%BC%9A-yuan-chang-you-yue.html</link><description>## 博士的三个阶段
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Tue, 28 Oct 2025 18:22:26 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251029 邓岳：院长有约</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20-deng-yue-%EF%BC%9A-yuan-chang-you-yue.html</link><description>## 博士的三个阶段
 1. 没有思路：快速的rush文章，然后懂这个方向应该怎么做
 2. 有很多思路，并且大概率都可行，这个时候需要自己沉淀一下，思考应该做什么样子的文章
 3. 有自己的科研品味
@@ -221,15 +221,26 @@ normal termination of xtb
 - cp A B 将A 的文件复制到B 中
 - cp A/* B 复制A 中的所有文件到A 中
 - rm -rf data 删除文件
+### 解压文件
+1. tar
+```shell
 - tar -xzvf name.tar.gz|head-100  解压出来，看看100个
 - tar -xzvf name.tar.gz 直接解压
+```
+2.7zip
+```shell 
 - sudo apt update
 - sudo apt install p7zip-full #7z安装
 - 7z x 01_ligand_process.7z # 解压7z文件
 - 7z x 01_ligand_process.7z -o/path/to/destination # 解压到指定目录
 - 7z l 01_ligand_process.7z # 列出压缩包的内容
 - 7z t 01_ligand_process.7z # 测试压缩包的完整性
+```
+3.zip
+```shell 
 - zip -r data5k.zip /database 将database文件夹压缩到data5k.zip
+```
+
 - ls | head -100 | xargs -I {} cp {} /home/user/destination/ 复制100个到xargs管道中，并到文件夹 （复制文件）
 - ls | head -5000 | xargs -I {} cp -r '{}' /home/dataset-assist-0/tmp/zsl/0-database 直接复制文件夹 需要-r
 

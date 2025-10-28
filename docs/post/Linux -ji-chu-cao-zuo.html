@@ -42,15 +42,26 @@
 - cp A B 将A 的文件复制到B 中
 - cp A/* B 复制A 中的所有文件到A 中
 - rm -rf data 删除文件
+### 解压文件
+1. tar
+```shell
 - tar -xzvf name.tar.gz|head-100  解压出来，看看100个
 - tar -xzvf name.tar.gz 直接解压
+```
+2.7zip
+```shell 
 - sudo apt update
 - sudo apt install p7zip-full #7z安装
 - 7z x 01_ligand_process.7z # 解压7z文件
 - 7z x 01_ligand_process.7z -o/path/to/destination # 解压到指定目录
 - 7z l 01_ligand_process.7z # 列出压缩包的内容
 - 7z t 01_ligand_process.7z # 测试压缩包的完整性
+```
+3.zip
+```shell 
 - zip -r data5k.zip /database 将database文件夹压缩到data5k.zip
+```
+
 - ls | head -100 | xargs -I {} cp {} /home/user/destination/ 复制100个到xargs管道中，并到文件夹 （复制文件）
 - ls | head -5000 | xargs -I {} cp -r '{}' /home/dataset-assist-0/tmp/zsl/0-database 直接复制文件夹 需要-r
 
@@ -132,15 +143,26 @@ dos2unix mydoc.txt
 - cp A B 将A 的文件复制到B 中
 - cp A/* B 复制A 中的所有文件到A 中
 - rm -rf data 删除文件
+### 解压文件
+1. tar
+```shell
 - tar -xzvf name.tar.gz|head-100  解压出来，看看100个
 - tar -xzvf name.tar.gz 直接解压
+```
+2.7zip
+```shell 
 - sudo apt update
 - sudo apt install p7zip-full #7z安装
 - 7z x 01_ligand_process.7z # 解压7z文件
 - 7z x 01_ligand_process.7z -o/path/to/destination # 解压到指定目录
 - 7z l 01_ligand_process.7z # 列出压缩包的内容
 - 7z t 01_ligand_process.7z # 测试压缩包的完整性
+```
+3.zip
+```shell 
 - zip -r data5k.zip /database 将database文件夹压缩到data5k.zip
+```
+
 - ls | head -100 | xargs -I {} cp {} /home/user/destination/ 复制100个到xargs管道中，并到文件夹 （复制文件）
 - ls | head -5000 | xargs -I {} cp -r '{}' /home/dataset-assist-0/tmp/zsl/0-database 直接复制文件夹 需要-r
 
@@ -289,45 +311,27 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     sed -i <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$s</span>#<span class="pl-smi">$#</span><span class="pl-smi">$ligand_charge</span>#<span class="pl-pds">"</span></span> .CHRG <span class="pl-c"><span class="pl-c">#</span> $匹配模式是行尾</span></pre></div>
 <h2>文件操作</h2>
 <ul>
-<li>
-<p>pwd 输出当前的文件夹路径</p>
-</li>
-<li>
-<p>cp A B 将A 的文件复制到B 中</p>
-</li>
-<li>
-<p>cp A/* B 复制A 中的所有文件到A 中</p>
-</li>
-<li>
-<p>rm -rf data 删除文件</p>
-</li>
-<li>
-<p>tar -xzvf name.tar.gz|head-100  解压出来，看看100个</p>
-</li>
-<li>
-<p>tar -xzvf name.tar.gz 直接解压</p>
-</li>
-<li>
-<p>sudo apt update</p>
-</li>
-<li>
-<p>sudo apt install p7zip-full #7z安装</p>
-</li>
-<li>
-<p>7z x 01_ligand_process.7z # 解压7z文件</p>
-</li>
-<li>
-<p>7z x 01_ligand_process.7z -o/path/to/destination # 解压到指定目录</p>
-</li>
-<li>
-<p>7z l 01_ligand_process.7z # 列出压缩包的内容</p>
-</li>
-<li>
-<p>7z t 01_ligand_process.7z # 测试压缩包的完整性</p>
-</li>
-<li>
-<p>zip -r data5k.zip /database 将database文件夹压缩到data5k.zip</p>
-</li>
+<li>pwd 输出当前的文件夹路径</li>
+<li>cp A B 将A 的文件复制到B 中</li>
+<li>cp A/* B 复制A 中的所有文件到A 中</li>
+<li>rm -rf data 删除文件</li>
+</ul>
+<h3>解压文件</h3>
+<ol>
+<li>tar</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">- tar -xzvf name.tar.gz<span class="pl-k">|</span>head-100  解压出来，看看100个
+- tar -xzvf name.tar.gz 直接解压</pre></div>
+<p>2.7zip</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">- sudo apt update
+- sudo apt install p7zip-full <span class="pl-c"><span class="pl-c">#</span>7z安装</span>
+- 7z x 01_ligand_process.7z <span class="pl-c"><span class="pl-c">#</span> 解压7z文件</span>
+- 7z x 01_ligand_process.7z -o/path/to/destination <span class="pl-c"><span class="pl-c">#</span> 解压到指定目录</span>
+- 7z l 01_ligand_process.7z <span class="pl-c"><span class="pl-c">#</span> 列出压缩包的内容</span>
+- 7z t 01_ligand_process.7z <span class="pl-c"><span class="pl-c">#</span> 测试压缩包的完整性</span></pre></div>
+<p>3.zip</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">- zip -r data5k.zip /database 将database文件夹压缩到data5k.zip</pre></div>
+<ul>
 <li>
 <p>ls | head -100 | xargs -I {} cp {} /home/user/destination/ 复制100个到xargs管道中，并到文件夹 （复制文件）</p>
 </li>
