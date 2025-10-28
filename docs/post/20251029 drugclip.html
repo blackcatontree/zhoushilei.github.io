@@ -10,7 +10,8 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="### 1. 采用了split_sdf 进行分割处理
+<meta name="description" content="## 一、ligand数据库构建
+### 1. 采用了split_sdf 进行分割处理
 ### 2. 数据库分子ID索引问题：
 ```python
 # ... in getID function
@@ -40,7 +41,8 @@ Se2+2 (4)、Pt+2 (1)、Ca+2 (0)、 S_6+6 (12)、Re5 (2)、Fe2+2 (0)、 Ce+3 (0)
 ```
 主循环会在写入 LMDB 之前，自动过滤掉所有返回 None 的分子（即跳过这些无法处理的分子）。">
 <meta property="og:title" content="20251029 drugclip">
-<meta property="og:description" content="### 1. 采用了split_sdf 进行分割处理
+<meta property="og:description" content="## 一、ligand数据库构建
+### 1. 采用了split_sdf 进行分割处理
 ### 2. 数据库分子ID索引问题：
 ```python
 # ... in getID function
@@ -139,7 +141,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h3>1. 采用了split_sdf 进行分割处理</h3>
+<div class="markdown-body" id="postBody"><h2>一、ligand数据库构建</h2>
+<h3>1. 采用了split_sdf 进行分割处理</h3>
 <h3>2. 数据库分子ID索引问题：</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># ... in getID function</span>
 <span class="pl-k">for</span> <span class="pl-s1">id_key</span> <span class="pl-c1">in</span> [<span class="pl-s">'IDNUMBER'</span>,<span class="pl-s">'Catalog ID'</span>,<span class="pl-s">'ID'</span>]:
