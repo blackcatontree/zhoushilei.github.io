@@ -10,8 +10,8 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="1. 采用了split_sdf 进行分割处理
-2. 数据库名称出现问题：
+<meta name="description" content="### 1. 采用了split_sdf 进行分割处理
+### 2. 数据库分子ID索引问题：
 ```python
 # ... in getID function
 for id_key in ['IDNUMBER','Catalog ID','ID']:
@@ -33,10 +33,15 @@ def getID(mol):
     
     # 如果所有键都失败，则抛出错误
     raise ValueError('No ID found in molecule')
-```。">
+```
+### 3.特殊的原子进行UFF 力场的MMFF优化时失败
+```text
+Se2+2 (4)、Pt+2 (1)、Ca+2 (0)、 S_6+6 (12)、Re5 (2)、Fe2+2 (0)、 Ce+3 (0)
+```
+主循环会在写入 LMDB 之前，自动过滤掉所有返回 None 的分子（即跳过这些无法处理的分子）。">
 <meta property="og:title" content="20251029 drugclip">
-<meta property="og:description" content="1. 采用了split_sdf 进行分割处理
-2. 数据库名称出现问题：
+<meta property="og:description" content="### 1. 采用了split_sdf 进行分割处理
+### 2. 数据库分子ID索引问题：
 ```python
 # ... in getID function
 for id_key in ['IDNUMBER','Catalog ID','ID']:
@@ -58,7 +63,12 @@ def getID(mol):
     
     # 如果所有键都失败，则抛出错误
     raise ValueError('No ID found in molecule')
-```。">
+```
+### 3.特殊的原子进行UFF 力场的MMFF优化时失败
+```text
+Se2+2 (4)、Pt+2 (1)、Ca+2 (0)、 S_6+6 (12)、Re5 (2)、Fe2+2 (0)、 Ce+3 (0)
+```
+主循环会在写入 LMDB 之前，自动过滤掉所有返回 None 的分子（即跳过这些无法处理的分子）。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20drugclip.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/114755056?v=4">
@@ -129,10 +139,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><ol>
-<li>采用了split_sdf 进行分割处理</li>
-<li>数据库名称出现问题：</li>
-</ol>
+<div class="markdown-body" id="postBody"><h3>1. 采用了split_sdf 进行分割处理</h3>
+<h3>2. 数据库分子ID索引问题：</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># ... in getID function</span>
 <span class="pl-k">for</span> <span class="pl-s1">id_key</span> <span class="pl-c1">in</span> [<span class="pl-s">'IDNUMBER'</span>,<span class="pl-s">'Catalog ID'</span>,<span class="pl-s">'ID'</span>]:
     <span class="pl-k">try</span>:
@@ -150,7 +158,11 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
             <span class="pl-k">pass</span>
     
     <span class="pl-c"># 如果所有键都失败，则抛出错误</span>
-    <span class="pl-k">raise</span> <span class="pl-en">ValueError</span>(<span class="pl-s">'No ID found in molecule'</span>)</pre></div></div>
+    <span class="pl-k">raise</span> <span class="pl-en">ValueError</span>(<span class="pl-s">'No ID found in molecule'</span>)</pre></div>
+<h3>3.特殊的原子进行UFF 力场的MMFF优化时失败</h3>
+<pre lang="text" class="notranslate"><code class="notranslate">Se2+2 (4)、Pt+2 (1)、Ca+2 (0)、 S_6+6 (12)、Re5 (2)、Fe2+2 (0)、 Ce+3 (0)
+</code></pre>
+<p>主循环会在写入 LMDB 之前，自动过滤掉所有返回 None 的分子（即跳过这些无法处理的分子）</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
