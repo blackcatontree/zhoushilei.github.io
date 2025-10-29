@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Wed, 29 Oct 2025 05:36:49 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251029 drugclip</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20drugclip.html</link><description>## 一、ligand数据库构建
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Wed, 29 Oct 2025 05:54:40 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251029 drugclip</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20drugclip.html</link><description>## 一、ligand数据库构建
 ### 1. 采用了split_sdf 进行分割处理
 ### 2. 数据库分子ID索引问题：
 ```python
@@ -44,37 +44,10 @@ pip install -e ./ # 3. 安装 unicore 库（在 pytorch2.5.1 环境中）
 ### 3. positive_ligand 数据ID 直接用分子式
 
 ### 4. 直接调用开始做rank
-```shell
-python /home/dataset-assist-0/tmp/zsl/AIDD/3-baseline/0302_encoder/030201_encode.py \
-    /home/dataset-assist-0/tmp/zsl/AIDD/3-baseline/0302_encoder/checkpoint_best.pt \
-    --user-pocket-path /home/dataset-assist-0/tmp/zsl/AIDD/2-data/protein/pocket.lmdb \
-    --user-mol-path-inact /home/dataset-assist-0/tmp/zsl/AIDD/2-data/ligand/sdftolmdb/enamine_molecules.lmdb \
-    --user-mol-path-act /home/dataset-assist-0/tmp/zsl/AIDD/2-data/positive_ligand/OIU.lmdb \
-    --output-excel-path ./validation_results/OIU_vs_enamine.xlsx \
-    --ligand-encoder-dir /home/dataset-assist-0/tmp/zsl/AIDD/2-data/ligand/encoder \
-    --pocket-encoder-dir /home/dataset-assist-0/tmp/zsl/AIDD/2-data/protein/encoder \
-    --active-encoder-dir /home/dataset-assist-0/tmp/zsl/AIDD/2-data/positive_ligand \
-    --batch-size 1024\
-    --task drugclip \
-    --data /dummy/data/path
-```
-### 5. 老师局部调用出问题
-```shell
-W1029 13:35:32.406891 83249 site-packages/torch/distributed/run.py:793] 
-W1029 13:35:32.406891 83249 site-packages/torch/distributed/run.py:793] *****************************************
-W1029 13:35:32.406891 83249 site-packages/torch/distributed/run.py:793] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
-W1029 13:35:32.406891 83249 site-packages/torch/distributed/run.py:793] *****************************************
-fused_multi_tensor is not installed corrected
-fused_rounding is not installed corrected
-fused_multi_tensor is not installed corrected
-fused_rounding is not installed corrected
-fused_layer_norm is not installed corrected
-fused_rms_norm is not installed corrected
-fused_softmax is not installed corrected
-fused_layer_norm is not installed corrected
-fused_rms_norm is not installed corrected
-fused_softmax is not installed corrected
-FATAL ERROR: 无法导入 UniMol/DrugCLIP 组件。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20drugclip.html</guid><pubDate>Tue, 28 Oct 2025 19:01:50 +0000</pubDate></item><item><title>20251029 邓岳：院长有约</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20-deng-yue-%EF%BC%9A-yuan-chang-you-yue.html</link><description>## 博士的三个阶段
+#DrugCLIP 验证脚本分析
+
+#### 脚本简介
+`run_vs_validation.py` 是独立脚本，用于验证 `DrugCLIP` 模型在不同规模（1M、2M、4M）诱饵库上的虚拟筛选任务。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20drugclip.html</guid><pubDate>Tue, 28 Oct 2025 19:01:50 +0000</pubDate></item><item><title>20251029 邓岳：院长有约</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20-deng-yue-%EF%BC%9A-yuan-chang-you-yue.html</link><description>## 博士的三个阶段
 1. 没有思路：快速的rush文章，然后懂这个方向应该怎么做
 2. 有很多思路，并且大概率都可行，这个时候需要自己沉淀一下，思考应该做什么样子的文章
 3. 有自己的科研品味
