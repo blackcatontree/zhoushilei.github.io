@@ -1,5 +1,30 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Wed, 29 Oct 2025 07:02:21 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251029 drugclip</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20drugclip.html</link><description>## 一、ligand数据库构建
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Wed, 29 Oct 2025 14:21:09 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251029 新开发机构建</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20-xin-kai-fa-ji-gou-jian.html</link><description>vscode 网页版本
+```shell
+conda create -n drugclip python=3.9 -y
+conda install pytorch==2.0.0 torchvision==0.15.0 torchaudio==2.0.0 pytorch-cuda=11.8 -c pytorch -c nvidia -y
+```
+配置清华源
+```shell
+conda config --remove-key channels
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
+conda config --set show_channel_urls yes
+pip install torch==2.0.0+cu118 torchvision==0.15.0+cu118 torchaudio==2.0.0+cu118 -f https://download.pytorch.org/whl/torch_stable.html -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unicore-0.0.1+cu118torch2.0.0-cp39-cp39-linux_x86_64.whl
+```
+```shell
+pip install  rdkit
+pip install numpy pandas
+pip install scikit-learn -i https://pypi.tuna.tsinghua.edu.cn/simple
+# 在 drugclip 环境中安装
+pip install ipython -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip uninstall numpy -y
+pip install numpy==1.24.3 -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
+。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20-xin-kai-fa-ji-gou-jian.html</guid><pubDate>Wed, 29 Oct 2025 14:20:39 +0000</pubDate></item><item><title>20251029 drugclip</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20drugclip.html</link><description>## 一、ligand数据库构建
 ### 1. 采用了split_sdf 进行分割处理
 ### 2. 数据库分子ID索引问题：
 ```python
