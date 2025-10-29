@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Wed, 29 Oct 2025 00:00:07 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251029 drugclip</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20drugclip.html</link><description>## 一、ligand数据库构建
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Wed, 29 Oct 2025 00:11:44 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251029 drugclip</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20drugclip.html</link><description>## 一、ligand数据库构建
 ### 1. 采用了split_sdf 进行分割处理
 ### 2. 数据库分子ID索引问题：
 ```python
@@ -35,7 +35,11 @@ Se2+2 (4)、Pt+2 (1)、Ca+2 (0)、 S_6+6 (12)、Re5 (2)、Fe2+2 (0)、 Ce+3 (0)
 [unicore](https://github.com/dptech-corp/Uni-Core)
 ```shell
 git clone https://github.com/dptech-corp/Uni-Core.git
-
+# 或者直接下载到本地然后上传，上传后解压
+cd /home/dataset-assist-0/tmp/zsl/AIDD/
+unzip main.zip
+cd Uni-Core-main 
+pip install -e ./ # 3. 安装 unicore 库（在 pytorch2.5.1 环境中）
 ```
  。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20drugclip.html</guid><pubDate>Tue, 28 Oct 2025 19:01:50 +0000</pubDate></item><item><title>20251029 邓岳：院长有约</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20-deng-yue-%EF%BC%9A-yuan-chang-you-yue.html</link><description>## 博士的三个阶段
 1. 没有思路：快速的rush文章，然后懂这个方向应该怎么做
