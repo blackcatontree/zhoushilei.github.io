@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Thu, 30 Oct 2025 05:39:13 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251029 新开发机构建</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20-xin-kai-fa-ji-gou-jian.html</link><description>vscode 网页版本
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Thu, 30 Oct 2025 09:13:08 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251029 新开发机构建</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20-xin-kai-fa-ji-gou-jian.html</link><description>vscode 网页版本
 ```shell
 conda create -n drugclip python=3.9 -y
 conda install pytorch==2.0.0 torchvision==0.15.0 torchaudio==2.0.0 pytorch-cuda=11.8 -c pytorch -c nvidia -y
@@ -27,6 +27,24 @@ pip install scikit-learn -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install ipython -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip uninstall numpy -y
 pip install numpy==1.24.3 -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
+git设置
+安装git graph 插件，(user's class)[https://blog.csdn.net/weixin_55783373/article/details/119571301]
+
+左下角 展示git graph
+点击下载按钮 可以下载最新 的远程分支数据
+可以创建新的分支
+上一步的前提是代码已经提交了或者签出
+```shell
+git config --global user.name zsl
+git config --global user.email 'zhou1553731627@gmail.com'
+#验证是否正确
+git config --list
+
+```
+```text
+come from 👍 
+https://blog.csdn.net/weixin_55783373/article/details/119571301
 ```
 。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20-xin-kai-fa-ji-gou-jian.html</guid><pubDate>Wed, 29 Oct 2025 14:20:39 +0000</pubDate></item><item><title>20251029 drugclip</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20drugclip.html</link><description>## 一、ligand数据库构建
 ### 1. 采用了split_sdf 进行分割处理
