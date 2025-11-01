@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Sat, 01 Nov 2025 08:02:41 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251101 getitem 方法使用</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251101%20getitem%20-fang-fa-shi-yong.html</link><description># python 类中的特殊方法
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Sat, 01 Nov 2025 16:21:29 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251101 getitem 方法使用</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251101%20getitem%20-fang-fa-shi-yong.html</link><description># python 类中的特殊方法
 
 ## __ini__ 方法
 
@@ -35,7 +35,44 @@ if __name__ == '__main__':
     print(Element()['key1'])
     print(Element()['key0'])
 ```
-comfrom[csdn getitem 类使用方法](https://blog.csdn.net/fz1992092500/article/details/123126524)。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/20251101%20getitem%20-fang-fa-shi-yong.html</guid><pubDate>Sat, 01 Nov 2025 04:19:50 +0000</pubDate></item><item><title>20251029 新开发机构建</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20-xin-kai-fa-ji-gou-jian.html</link><description>vscode 网页版本
+comfrom[csdn getitem 类使用方法](https://blog.csdn.net/fz1992092500/article/details/123126524)。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/20251101%20getitem%20-fang-fa-shi-yong.html</guid><pubDate>Sat, 01 Nov 2025 04:19:50 +0000</pubDate></item><item><title>20251031</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251031.html</link><description># inami 生成3D坐标，创建lmbd数据库
+
+```shell
+python inami_sdf2lmddb.py \
+--sdf_path /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/Enamine_screening_collection_202508.sdf \
+--lmdb_path /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/Enamine_screening_collection_202508.lmdb \
+--map_size_gb 64 \
+--batch_commit 2000
+```
+
+# inami 数据库特征描述
+
+```shell
+python -u unimol/test.py\
+--user-dir ./unimol ./data\
+--valid-subset tese\
+--result-path ./test\
+--num-workers 24\
+--task drugclip\
+--lose in batch_softmax --arch drugclip\
+--fp16 --fp16-init-scale 4\
+--fp16-scale-window 256\
+--seed 1\
+--patch checkpoint_best.pt\
+--log-interval 100 --log-format simple --max-pocket-atoms 511\
+--test-task extract_feats\
+--mol_data_path 
+```
+```shell
+python -u unimol/test.py --user-dir ./unimol ./data \
+--valid-subset test --results-path ./test --num-workers 8 --ddp-backend c10d --batch-size 8 --task drugclip --loss in_batch_softmax\
+--arch drugclip --fp16 --fp16-init-scale 4 --fp16-scale-window 256 --seed 1\
+--path checkpoint_best.pt\
+--log-interval 100 --log-format simple --max-pocket-atoms 511\
+--test-task extract_feats\
+--mol_data_path /vepfs-mlp2/mlp-public/shikunfeng/Project/DrugCLIP/data/inami/Enamine_202508_3d.lmdb\
+--save_dir /vepfs-mlp2/mlp-public/shikunfeng/Project/DrugCLIP/data/inami/mol_feats
+```。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/20251031.html</guid><pubDate>Fri, 31 Oct 2025 07:48:56 +0000</pubDate></item><item><title>20251029 新开发机构建</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20-xin-kai-fa-ji-gou-jian.html</link><description>vscode 网页版本
 ```shell
 conda create -n drugclip python=3.9 -y
 conda install pytorch==2.0.0 torchvision==0.15.0 torchaudio==2.0.0 pytorch-cuda=11.8 -c pytorch -c nvidia -y
