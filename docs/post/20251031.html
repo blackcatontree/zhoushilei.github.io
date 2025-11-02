@@ -56,6 +56,14 @@ python -u unimol/test.py --user-dir ./unimol ./data \
 --test-task extract_feats\
 --mol_data_path /vepfs-mlp2/mlp-public/shikunfeng/Project/DrugCLIP/data/inami/Enamine_202508_3d.lmdb\
 --save_dir /vepfs-mlp2/mlp-public/shikunfeng/Project/DrugCLIP/data/inami/mol_feats
+```
+# lmdb合并
+```shell
+python /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/inami_sdf2lmdb_split4.py \
+--input_dir /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/inami_split \
+--output_dir /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/inami_lmdb \
+--output_name final_merged20251103.lmdb \
+--map_size_gb 200
 ```。">
 <meta property="og:title" content="20251031">
 <meta property="og:description" content="# inami 生成3D坐标，创建lmbd数据库
@@ -104,6 +112,14 @@ python -u unimol/test.py --user-dir ./unimol ./data \
 --test-task extract_feats\
 --mol_data_path /vepfs-mlp2/mlp-public/shikunfeng/Project/DrugCLIP/data/inami/Enamine_202508_3d.lmdb\
 --save_dir /vepfs-mlp2/mlp-public/shikunfeng/Project/DrugCLIP/data/inami/mol_feats
+```
+# lmdb合并
+```shell
+python /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/inami_sdf2lmdb_split4.py \
+--input_dir /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/inami_split \
+--output_dir /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/inami_lmdb \
+--output_name final_merged20251103.lmdb \
+--map_size_gb 200
 ```。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://blackcatontree.github.io/zhoushilei.github.io/post/20251031.html">
@@ -212,7 +228,13 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 --log-interval 100 --log-format simple --max-pocket-atoms 511\
 --test-task extract_feats\
 --mol_data_path /vepfs-mlp2/mlp-public/shikunfeng/Project/DrugCLIP/data/inami/Enamine_202508_3d.lmdb\
---save_dir /vepfs-mlp2/mlp-public/shikunfeng/Project/DrugCLIP/data/inami/mol_feats</pre></div></div>
+--save_dir /vepfs-mlp2/mlp-public/shikunfeng/Project/DrugCLIP/data/inami/mol_feats</pre></div>
+<h1>lmdb合并</h1>
+<div class="highlight highlight-source-shell"><pre class="notranslate">python /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/inami_sdf2lmdb_split4.py \
+--input_dir /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/inami_split \
+--output_dir /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/inami_lmdb \
+--output_name final_merged20251103.lmdb \
+--map_size_gb 200</pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
