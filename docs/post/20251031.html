@@ -13,12 +13,21 @@
 <meta name="description" content="# inami 生成3D坐标，创建lmbd数据库
 
 ```shell
-python inami_sdf2lmddb.py \
+python inami_sdf2lmddb_slow.py \
 --sdf_path /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/Enamine_screening_collection_202508.sdf \
 --lmdb_path /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/Enamine_screening_collection_202508.lmdb \
 --map_size_gb 64 \
 --batch_commit 2000
 ```
+# split的方法
+python inami_sdf2lmdb_quick.py\
+--sdf_path /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/Enamine_screening_collection_202508.sdf \
+--lmdb_path /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami_quickly/Enamine_screening_collection_202508.lmdb \
+--map_size_gb 64 \
+--batch_commit 2000\
+--num_workers 24\
+--timeout_seconds 30
+# 直接调用的
 
 # inami 数据库特征描述
 
@@ -52,12 +61,21 @@ python -u unimol/test.py --user-dir ./unimol ./data \
 <meta property="og:description" content="# inami 生成3D坐标，创建lmbd数据库
 
 ```shell
-python inami_sdf2lmddb.py \
+python inami_sdf2lmddb_slow.py \
 --sdf_path /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/Enamine_screening_collection_202508.sdf \
 --lmdb_path /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/Enamine_screening_collection_202508.lmdb \
 --map_size_gb 64 \
 --batch_commit 2000
 ```
+# split的方法
+python inami_sdf2lmdb_quick.py\
+--sdf_path /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/Enamine_screening_collection_202508.sdf \
+--lmdb_path /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami_quickly/Enamine_screening_collection_202508.lmdb \
+--map_size_gb 64 \
+--batch_commit 2000\
+--num_workers 24\
+--timeout_seconds 30
+# 直接调用的
 
 # inami 数据库特征描述
 
@@ -158,11 +176,20 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody"><h1>inami 生成3D坐标，创建lmbd数据库</h1>
-<div class="highlight highlight-source-shell"><pre class="notranslate">python inami_sdf2lmddb.py \
+<div class="highlight highlight-source-shell"><pre class="notranslate">python inami_sdf2lmddb_slow.py \
 --sdf_path /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/Enamine_screening_collection_202508.sdf \
 --lmdb_path /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/Enamine_screening_collection_202508.lmdb \
 --map_size_gb 64 \
 --batch_commit 2000</pre></div>
+<h1>split的方法</h1>
+<p>python inami_sdf2lmdb_quick.py<br>
+--sdf_path /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/Enamine_screening_collection_202508.sdf <br>
+--lmdb_path /home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami_quickly/Enamine_screening_collection_202508.lmdb <br>
+--map_size_gb 64 <br>
+--batch_commit 2000<br>
+--num_workers 24<br>
+--timeout_seconds 30</p>
+<h1>直接调用的</h1>
 <h1>inami 数据库特征描述</h1>
 <div class="highlight highlight-source-shell"><pre class="notranslate">python -u unimol/test.py\
 --user-dir ./unimol ./data\
