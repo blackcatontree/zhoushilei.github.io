@@ -1,5 +1,185 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Sun, 02 Nov 2025 19:52:48 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251101 getitem 方法使用</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251101%20getitem%20-fang-fa-shi-yong.html</link><description># python 类中的特殊方法
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Thu, 06 Nov 2025 19:02:32 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251107</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251107.html</link><description># lmdb库使用
+- come from :[(50 封私信 / 81 条消息) lmdb 数据库 - 知乎](https://zhuanlan.zhihu.com/p/70359311)
+- 内容： 
+	- 锁文件 `lock.mdb`
+	- 数据文件 `data.mdb`
+- 优点：
+	- 高存取速度：减少了访问大量小文件时的IO 时间开销
+- 基本函数
+
+## lmdb 基本参数
+```python
+env = lmdb.open() # 创建lmdb环境
+txn = env.begin() # 建立事务
+
+txn.put(key,value) # 进行插入和修改
+txn.delete(key) #进行删除
+txn.get(key) #查询
+txn.cursor() #遍历
+
+txn.commit() #提交更改
+```
+
+## lmdb 修改任务
+```python
+import lmdb
+env = lmdb.load(lmdb_path,map_size=100 * 1024 * 1024 * 1024) #导入数据库
+
+txn = env.begin(write=True) # 对数据库进行写入操作
+txn.put(str(1).encode(),'Alice'.encode()) #对数据库进行插入和修改操作，传入的数据为键值对
+#encode() 改变参数形式，bytes，后面用decode可以得到原始的数据
+txn.delete(str(1).encode()) # 删除操作
+```
+
+## lmdb 数据库遍历
+
+```python
+env = lmdb.load(lmdb_path,map_size = 100 * 1024 *1024 * 1024)
+txn = env.begin()
+# 索引
+print(txn.get(str(2).encode())) #get(key) 单条记录
+# 遍历
+for key,value in txn.cursor(): # 类似于游标，每读取一个，向下移动一个
+	print(key,value)
+env.close()
+```
+
+```python
+with env.begin() as txn:
+	print(txn.get(str(2).encode()))
+	for key,value in txn.cursor():
+		print(key,value)
+```
+
+```python
+import lmdb
+env = lmdb.open('/home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/inami_lmdb/final_merged20251103.lmdb', readonly=True, lock=False)
+# 创建一个只读事务来统计条目数
+
+with env.begin() as txn:
+    # 获取统计信息，其中包含条目数量
+    stats = txn.stat()
+    print(f'LMDB中的总条目数为: {stats['entries']}') 
+env.close()
+```
+
+## demo
+```python
+import lmdb
+import os, sys
+
+def initialize():
+    env = lmdb.open('lmdb_dir')
+    return env
+
+def insert(env, sid, name):
+    txn = env.begin(write=True)
+    txn.put(str(sid).encode(), name.encode())
+    txn.commit()
+
+def delete(env, sid):
+    txn = env.begin(write=True)
+    txn.delete(str(sid).encode())
+    txn.commit()
+
+def update(env, sid, name):
+    txn = env.begin(write=True)
+    txn.put(str(sid).encode(), name.encode())
+    txn.commit()
+
+def search(env, sid):
+    txn = env.begin()
+    name = txn.get(str(sid).encode())
+    return name
+
+def display(env):
+    txn = env.begin()
+    cur = txn.cursor()
+    for key, value in cur:
+        print(key, value)
+
+
+env = initialize()
+
+print('Insert 3 records.')
+insert(env, 1, 'Alice')
+insert(env, 2, 'Bob')
+insert(env, 3, 'Peter')
+display(env)
+
+print('Delete the record where sid = 1.')
+delete(env, 1)
+display(env)
+
+print('Update the record where sid = 3.')
+update(env, 3, 'Mark')
+display(env)
+
+print('Get the name of student whose sid = 3.')
+name = search(env, 3)
+print(name)
+
+# 最后需要关闭关闭lmdb数据库
+env.close()
+
+# 执行系统命令
+os.system('rm -r lmdb_dir')
+```
+
+## 图像深度学习训练
+将大量的原始数据集转化为lmdb格式方便后面训练
+```python
+import lmdb
+
+image_path = './cat.jpg'
+label = 'cat'
+
+env = lmdb.open('lmdb_dir')
+cache = {}  # 存储键值对
+
+with open(image_path, 'rb') as f:
+    # 读取图像文件的二进制格式数据
+    image_bin = f.read()
+
+# 用两个键值对表示一个数据样本
+cache['image_000'] = image_bin
+cache['label_000'] = label
+
+with env.begin(write=True) as txn:
+    for k, v in cache.items():
+        if isinstance(v, bytes):
+            # 图片类型为bytes
+            txn.put(k.encode(), v)
+        else:
+            # 标签类型为str, 转为bytes
+            txn.put(k.encode(), v.encode())  # 编码
+
+env.close()
+```
+
+读取图片的数据
+```python
+import cv2
+import lmdb
+import numpy as np
+
+env = lmdb.open('lmdb_dir')
+
+with env.begin(write=False) as txn:
+    # 获取图像数据
+    image_bin = txn.get('image_000'.encode())
+    label = txn.get('label_000'.encode()).decode()  # 解码
+
+    # 将二进制文件转为十进制文件（一维数组）
+    image_buf = np.frombuffer(image_bin, dtype=np.uint8)
+    # 将数据转换(解码)成图像格式
+    # cv2.IMREAD_GRAYSCALE为灰度图，cv2.IMREAD_COLOR为彩色图
+    img = cv2.imdecode(image_buf, cv2.IMREAD_COLOR)
+    cv2.imshow('image', img)
+    cv2.waitKey(0)
+```
+。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/20251107.html</guid><pubDate>Thu, 06 Nov 2025 19:02:02 +0000</pubDate></item><item><title>20251101 getitem 方法使用</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251101%20getitem%20-fang-fa-shi-yong.html</link><description># python 类中的特殊方法
 
 ## __ini__ 方法
 
