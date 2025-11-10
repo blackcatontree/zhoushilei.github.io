@@ -1,5 +1,148 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Thu, 06 Nov 2025 19:02:32 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251107</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251107.html</link><description># lmdb库使用
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Mon, 10 Nov 2025 16:28:23 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251110 vasp 操作</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251110%20vasp%20-cao-zuo.html</link><description>## vaspkit的编译
+1. 教程：[vaspkit编译](https://zhuanlan.zhihu.com/p/680752546)
+2. 添加到bashrc
+```shell
+# 添加到 ~/.bashrc
+echo 'export PATH=$PATH:/home/dataset-assist-0/tmp/zsl/DFT/vaspkit.1.5.1/bin' &gt;&gt; ~/.bashrc
+source ~/.bashrc
+```
+3. 保存镜像
+
+4. 验证
+
+```shell
+which vaspkit
+vaspkit --version
+```
+## vaspkit 固定原子（按照高度固定）
+1. 教程：https://zhuanlan.zhihu.com/p/687033002
+
+## 结构优化文件设置
+1. KPOINTS
+
+```shell
+KPOINTS
+KPOINTS
+0
+Gamma
+3 3 1
+0 0 0
+```
+2. POSTAR
+```shell
+SYSTEM = CoSe2 slab relax
+# —— 精度 ——
+ENCUT  = 520
+PREC   = Normal
+EDIFF  = 1E-5
+# 可考虑稍严格的力收敛（对表面研究）
+EDIFFG = -0.01  # 从-0.02提高到-0.01 eV/Å
+
+# —— 金属性/展宽 ——
+ISMEAR = 0
+SIGMA  = 0.05
+
+# —— 自旋（CoSe2 表面建议开自旋） ——
+ISPIN  = 2
+MAGMOM = 72*2.5 144*0.1    # 72 个 Co 给 2.0 μB 初始，Se 给 0
+
+# 如果文献表明CoSe₂需要+U，建议现在就加上：
+LDAU = .TRUE.
+LDAUTYPE = 2
+LDAUL = 2 -1     # Co-d, Se-p
+LDAUU = 4.0 0.0  # U值需根据文献调整
+LDAUJ = 0.0 0.0
+
+# —— 几何优化与算法 ——
+IBRION = 2
+NSW    = 150
+ISIF   = 2
+ALGO   = Normal
+LASPH  = .TRUE. # 精度项
+LREAL  = .TRUE.
+ISYM   = 0
+
+# —— 色散 &amp; 偶极修正 ——
+IVDW   = 12
+LDIPOL = .TRUE.
+IDIPOL = 3
+LASPH  = .TRUE. 
+KPAR   = 1           # = 你用的 GPU 张数（两张就写 2）
+NBANDS = 1000 分配容易显存爆炸
+NELM = 120 # 电子步上限，稳一下
+```
+3. 赝势文件potcar形成
+（1）下载赝势文件   https://www.bilibili.com/opus/792602409042968599
+（2）制作POTCAR：POTCAR 文件时把各个元素的势文件按照POSCAR 的元素顺序拼接起来
+```shell
+# 假设你的库根在 $VASP_PP_PATH，优先用 Co_pv，其次 Co；Se 用 Se
+[ -f '$VASP_PP_PATH/Co_pv/POTCAR' ] &amp;&amp; CO_DIR='$VASP_PP_PATH/Co_pv' || CO_DIR='$VASP_PP_PATH/Co'
+SE_DIR='$VASP_PP_PATH/Se'
+
+cat '$CO_DIR/POTCAR' &gt; POTCAR
+cat '$SE_DIR/POTCAR' &gt;&gt; POTCAR
+
+# 快速核对
+grep TITEL POTCAR        # 应显示先 Co... 再 Se...
+
+```
+```shell
+cd /home/dataset-assist-0/tmp/zsl/DFT/cry_surface/c4_100
+export VASP_PP_PATH='/home/dataset-assist-0/tmp/zsl/DFT/PAW_PBE'
+
+[ -f '$VASP_PP_PATH/Co_pv/POTCAR' ] &amp;&amp; CO_DIR='$VASP_PP_PATH/Co_pv' || CO_DIR='$VASP_PP_PATH/Co'
+SE_DIR='$VASP_PP_PATH/Se'
+
+cat '$CO_DIR/POTCAR' &gt; POTCAR
+cat '$SE_DIR/POTCAR' &gt;&gt; POTCAR
+
+grep TITEL POTCAR
+
+```
+## 运行计算
+### 没有显卡的方式
+1. 查看显卡是否在使用：
+```shell
+nvidia-smi
+nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv,noheader,nounits
+```
+2. 查看有没有cpu在使用
+```shell
+# 查看VASP进程
+ps aux | grep vasp
+top -u $USER
+```
+3. 实际的计算过程
+```shell
+# 设置环境
+ulimit -s unlimited
+export OMP_NUM_THREADS=1
+
+# 方式1：前台运行，实时看到输出
+mpirun -np 16 vasp_std |&amp; tee -a relax.out
+
+# 方式2：后台运行，输出到文件
+nohup mpirun -np 16 vasp_std &gt;&gt; relax.out 2&gt;&amp;1 &amp;
+```
+4. 多节点的CPU运行
+```shell
+# 使用作业调度系统（SLURM）
+sbatch job_script.slurm
+
+# job_script.slurm 内容示例：
+#!/bin/bash
+#SBATCH -N 2           # 2个节点
+#SBATCH --ntasks-per-node=16  # 每个节点16进程
+#SBATCH -p compute     # 计算队列
+
+mpirun vasp_std
+```
+
+### 有显卡的方式
+1. 查看显卡是否在使用
+2. 判断使用几个卡：
+**(1)一个机器一个卡**：`mpirun -np 1 -mca coll ^hcoll vasp_std |&amp; tee -a relax.out` ；表示进程数量为1，兼容性进行GPU计算，采用vasp_std 进行计算，最后进行错误和输出的重定型和打印。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/20251110%20vasp%20-cao-zuo.html</guid><pubDate>Sun, 09 Nov 2025 17:48:25 +0000</pubDate></item><item><title>20251107</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251107.html</link><description># lmdb库使用
 - come from :[(50 封私信 / 81 条消息) lmdb 数据库 - 知乎](https://zhuanlan.zhihu.com/p/70359311)
 - 内容： 
 	- 锁文件 `lock.mdb`
