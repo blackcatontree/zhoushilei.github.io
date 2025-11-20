@@ -1,3 +1,36 @@
+## 两个电脑连接ssh
+1. **两台电脑生成ssh key**
+```bash
+ssh-keygen 
+ssh-keygen -t ed25519 -C "my-dev-machine"
+```
+私钥：~/.ssh/id_ed25519
+公钥：~/.ssh/id_ed25519.pub
+```bash
+# 查看key
+cat ~/.ssh/id_ed25519.pub
+```
+2. **服务器上**
+```bash
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+nano ~/.ssh/authorized_keys   # 或 vi
+把两台电脑的 id_ed25519.pub 各自那一整行，一行一条，都贴进去：
+
+ssh-ed25519 AAAA...... 第一台电脑的公钥
+ssh-ed25519 BBBB...... 第二台电脑的公钥
+ctrl+o 保存
+ctrl+x  退出
+保存后：
+chmod 600 ~/.ssh/authorized_keys
+```
+ps.如果还是连接不上，可以清除旧文档
+```bash
+ssh-keygen -R "[106.63.100.63]:30211"
+旧的身份信息
+```
+
+
 ## 文件同步，可以直接编写 
 ### 1.vscode安装ssh插件 remote-SSH
 

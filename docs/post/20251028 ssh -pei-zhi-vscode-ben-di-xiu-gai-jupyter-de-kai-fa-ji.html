@@ -10,7 +10,40 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="## 文件同步，可以直接编写 
+<meta name="description" content="## 两个电脑连接ssh
+1. **两台电脑生成ssh key**
+```bash
+ssh-keygen 
+ssh-keygen -t ed25519 -C 'my-dev-machine'
+```
+私钥：~/.ssh/id_ed25519
+公钥：~/.ssh/id_ed25519.pub
+```bash
+# 查看key
+cat ~/.ssh/id_ed25519.pub
+```
+2. **服务器上**
+```bash
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+nano ~/.ssh/authorized_keys   # 或 vi
+把两台电脑的 id_ed25519.pub 各自那一整行，一行一条，都贴进去：
+
+ssh-ed25519 AAAA...... 第一台电脑的公钥
+ssh-ed25519 BBBB...... 第二台电脑的公钥
+ctrl+o 保存
+ctrl+x  退出
+保存后：
+chmod 600 ~/.ssh/authorized_keys
+```
+ps.如果还是连接不上，可以清除旧文档
+```bash
+ssh-keygen -R '[106.63.100.63]:30211'
+旧的身份信息
+```
+
+
+## 文件同步，可以直接编写 
 ### 1.vscode安装ssh插件 remote-SSH
 
  ```shell
@@ -81,7 +114,40 @@ python -m ipykernel install --user --name python2.5.1 --display-name 'python251'
 ```
 。">
 <meta property="og:title" content="20251028 ssh 配置vscode本地修改jupyter的开发机">
-<meta property="og:description" content="## 文件同步，可以直接编写 
+<meta property="og:description" content="## 两个电脑连接ssh
+1. **两台电脑生成ssh key**
+```bash
+ssh-keygen 
+ssh-keygen -t ed25519 -C 'my-dev-machine'
+```
+私钥：~/.ssh/id_ed25519
+公钥：~/.ssh/id_ed25519.pub
+```bash
+# 查看key
+cat ~/.ssh/id_ed25519.pub
+```
+2. **服务器上**
+```bash
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+nano ~/.ssh/authorized_keys   # 或 vi
+把两台电脑的 id_ed25519.pub 各自那一整行，一行一条，都贴进去：
+
+ssh-ed25519 AAAA...... 第一台电脑的公钥
+ssh-ed25519 BBBB...... 第二台电脑的公钥
+ctrl+o 保存
+ctrl+x  退出
+保存后：
+chmod 600 ~/.ssh/authorized_keys
+```
+ps.如果还是连接不上，可以清除旧文档
+```bash
+ssh-keygen -R '[106.63.100.63]:30211'
+旧的身份信息
+```
+
+
+## 文件同步，可以直接编写 
 ### 1.vscode安装ssh插件 remote-SSH
 
  ```shell
@@ -221,7 +287,34 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h2>文件同步，可以直接编写</h2>
+<div class="markdown-body" id="postBody"><h2>两个电脑连接ssh</h2>
+<ol>
+<li><strong>两台电脑生成ssh key</strong></li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">ssh-keygen 
+ssh-keygen -t ed25519 -C <span class="pl-s"><span class="pl-pds">"</span>my-dev-machine<span class="pl-pds">"</span></span></pre></div>
+<p>私钥：<del>/.ssh/id_ed25519<br>
+公钥：</del>/.ssh/id_ed25519.pub</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 查看key</span>
+cat <span class="pl-k">~</span>/.ssh/id_ed25519.pub</pre></div>
+<ol start="2">
+<li><strong>服务器上</strong></li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">mkdir -p <span class="pl-k">~</span>/.ssh
+chmod 700 <span class="pl-k">~</span>/.ssh
+nano <span class="pl-k">~</span>/.ssh/authorized_keys   <span class="pl-c"><span class="pl-c">#</span> 或 vi</span>
+把两台电脑的 id_ed25519.pub 各自那一整行，一行一条，都贴进去：
+
+ssh-ed25519 AAAA...... 第一台电脑的公钥
+ssh-ed25519 BBBB...... 第二台电脑的公钥
+ctrl+o 保存
+ctrl+x  退出
+保存后：
+chmod 600 <span class="pl-k">~</span>/.ssh/authorized_keys</pre></div>
+<p>ps.如果还是连接不上，可以清除旧文档</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">ssh-keygen -R <span class="pl-s"><span class="pl-pds">"</span>[106.63.100.63]:30211<span class="pl-pds">"</span></span>
+旧的身份信息</pre></div>
+<h2>文件同步，可以直接编写</h2>
 <h3>1.vscode安装ssh插件 remote-SSH</h3>
 <div class="highlight highlight-source-shell"><pre class="notranslate">ssh <span class="pl-c"><span class="pl-c">#</span> 检查是否安装了ssh</span>
 </pre></div>
