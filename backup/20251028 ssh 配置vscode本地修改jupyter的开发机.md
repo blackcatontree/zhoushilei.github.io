@@ -1,3 +1,18 @@
+## 一个电脑连接两个ssh开发机
+### 生成新的ssh密钥对
+```bash
+### 生成密钥对
+ssh-keygen -t rsa -b 4096 -C "gpu8" -f C:\Users\Administrator\.ssh\id_rsa_gpu8
+### 查看密钥对
+type C:\Users\Administrator\.ssh\id_rsa_gpu8.pub
+### 复制密钥对到【添加公钥】
+### 重命名公钥
+### 把文件重新定义到
+```bash
+ IdentityFile C:/Users/Administrator/.ssh/id_rsa_gpu8
+```
+```
+
 ## 两个电脑连接ssh
 1. **两台电脑生成ssh key**
 ```bash
@@ -26,6 +41,9 @@ chmod 600 ~/.ssh/authorized_keys
 ```
 ps.如果还是连接不上，可以清除旧文档
 ```bash
+# 查看有那些
+type C:\Users\Administrator\.ssh\known_hosts
+# 删除旧信息
 ssh-keygen -R "[106.63.100.63]:30211"
 旧的身份信息
 ```

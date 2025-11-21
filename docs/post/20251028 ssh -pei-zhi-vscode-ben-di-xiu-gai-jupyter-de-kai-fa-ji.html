@@ -10,7 +10,22 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="## 两个电脑连接ssh
+<meta name="description" content="## 一个电脑连接两个ssh开发机
+### 生成新的ssh密钥对
+```bash
+### 生成密钥对
+ssh-keygen -t rsa -b 4096 -C 'gpu8' -f C:\Users\Administrator\.ssh\id_rsa_gpu8
+### 查看密钥对
+type C:\Users\Administrator\.ssh\id_rsa_gpu8.pub
+### 复制密钥对到【添加公钥】
+### 重命名公钥
+### 把文件重新定义到
+```bash
+ IdentityFile C:/Users/Administrator/.ssh/id_rsa_gpu8
+```
+```
+
+## 两个电脑连接ssh
 1. **两台电脑生成ssh key**
 ```bash
 ssh-keygen 
@@ -38,6 +53,9 @@ chmod 600 ~/.ssh/authorized_keys
 ```
 ps.如果还是连接不上，可以清除旧文档
 ```bash
+# 查看有那些
+type C:\Users\Administrator\.ssh\known_hosts
+# 删除旧信息
 ssh-keygen -R '[106.63.100.63]:30211'
 旧的身份信息
 ```
@@ -114,7 +132,22 @@ python -m ipykernel install --user --name python2.5.1 --display-name 'python251'
 ```
 。">
 <meta property="og:title" content="20251028 ssh 配置vscode本地修改jupyter的开发机">
-<meta property="og:description" content="## 两个电脑连接ssh
+<meta property="og:description" content="## 一个电脑连接两个ssh开发机
+### 生成新的ssh密钥对
+```bash
+### 生成密钥对
+ssh-keygen -t rsa -b 4096 -C 'gpu8' -f C:\Users\Administrator\.ssh\id_rsa_gpu8
+### 查看密钥对
+type C:\Users\Administrator\.ssh\id_rsa_gpu8.pub
+### 复制密钥对到【添加公钥】
+### 重命名公钥
+### 把文件重新定义到
+```bash
+ IdentityFile C:/Users/Administrator/.ssh/id_rsa_gpu8
+```
+```
+
+## 两个电脑连接ssh
 1. **两台电脑生成ssh key**
 ```bash
 ssh-keygen 
@@ -142,6 +175,9 @@ chmod 600 ~/.ssh/authorized_keys
 ```
 ps.如果还是连接不上，可以清除旧文档
 ```bash
+# 查看有那些
+type C:\Users\Administrator\.ssh\known_hosts
+# 删除旧信息
 ssh-keygen -R '[106.63.100.63]:30211'
 旧的身份信息
 ```
@@ -287,12 +323,24 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h2>两个电脑连接ssh</h2>
-<ol>
-<li><strong>两台电脑生成ssh key</strong></li>
-</ol>
-<div class="highlight highlight-source-shell"><pre class="notranslate">ssh-keygen 
-ssh-keygen -t ed25519 -C <span class="pl-s"><span class="pl-pds">"</span>my-dev-machine<span class="pl-pds">"</span></span></pre></div>
+<div class="markdown-body" id="postBody"><h2>一个电脑连接两个ssh开发机</h2>
+<h3>生成新的ssh密钥对</h3>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span>## 生成密钥对</span>
+ssh-keygen -t rsa -b 4096 -C <span class="pl-s"><span class="pl-pds">"</span>gpu8<span class="pl-pds">"</span></span> -f C:<span class="pl-cce">\U</span>sers<span class="pl-cce">\A</span>dministrator<span class="pl-cce">\.</span>ssh<span class="pl-cce">\i</span>d_rsa_gpu8
+<span class="pl-c"><span class="pl-c">#</span>## 查看密钥对</span>
+<span class="pl-c1">type</span> C:<span class="pl-cce">\U</span>sers<span class="pl-cce">\A</span>dministrator<span class="pl-cce">\.</span>ssh<span class="pl-cce">\i</span>d_rsa_gpu8.pub
+<span class="pl-c"><span class="pl-c">#</span>## 复制密钥对到【添加公钥】</span>
+<span class="pl-c"><span class="pl-c">#</span>## 重命名公钥</span>
+<span class="pl-c"><span class="pl-c">#</span>## 把文件重新定义到</span>
+<span class="pl-s"><span class="pl-pds">`</span><span class="pl-pds">`</span><span class="pl-pds">`</span>bash</span>
+<span class="pl-s"> IdentityFile C:/Users/Administrator/.ssh/id_rsa_gpu8</span></pre></div>
+<pre class="notranslate"><code class="notranslate">
+## 两个电脑连接ssh
+1. **两台电脑生成ssh key**
+```bash
+ssh-keygen 
+ssh-keygen -t ed25519 -C "my-dev-machine"
+</code></pre>
 <p>私钥：<del>/.ssh/id_ed25519<br>
 公钥：</del>/.ssh/id_ed25519.pub</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 查看key</span>
@@ -312,7 +360,10 @@ ctrl+x  退出
 保存后：
 chmod 600 <span class="pl-k">~</span>/.ssh/authorized_keys</pre></div>
 <p>ps.如果还是连接不上，可以清除旧文档</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">ssh-keygen -R <span class="pl-s"><span class="pl-pds">"</span>[106.63.100.63]:30211<span class="pl-pds">"</span></span>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 查看有那些</span>
+<span class="pl-c1">type</span> C:<span class="pl-cce">\U</span>sers<span class="pl-cce">\A</span>dministrator<span class="pl-cce">\.</span>ssh<span class="pl-cce">\k</span>nown_hosts
+<span class="pl-c"><span class="pl-c">#</span> 删除旧信息</span>
+ssh-keygen -R <span class="pl-s"><span class="pl-pds">"</span>[106.63.100.63]:30211<span class="pl-pds">"</span></span>
 旧的身份信息</pre></div>
 <h2>文件同步，可以直接编写</h2>
 <h3>1.vscode安装ssh插件 remote-SSH</h3>
