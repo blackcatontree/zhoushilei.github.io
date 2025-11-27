@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Fri, 21 Nov 2025 20:53:33 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251110 vasp 操作</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251110%20vasp%20-cao-zuo.html</link><description>## vaspkit的编译
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>周仕磊的博客</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link><description>整理自己编程中遇到的问题</description><copyright>周仕磊的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/114755056?v=4</url><title>avatar</title><link>https://blackcatontree.github.io/zhoushilei.github.io</link></image><lastBuildDate>Thu, 27 Nov 2025 15:10:18 +0000</lastBuildDate><managingEditor>周仕磊的博客</managingEditor><ttl>60</ttl><webMaster>周仕磊的博客</webMaster><item><title>20251110 vasp 操作</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251110%20vasp%20-cao-zuo.html</link><description>## vaspkit的编译
 1. 教程：[vaspkit编译](https://zhuanlan.zhihu.com/p/680752546)
 2. 添加到bashrc
 ```shell
@@ -142,7 +142,7 @@ mpirun vasp_std
 ### 有显卡的方式
 1. 查看显卡是否在使用
 2. 判断使用几个卡：
-**(1)一个机器一个卡**：`mpirun -np 1 -mca coll ^hcoll vasp_std |&amp; tee -a relax.out` ；表示进程数量为1，兼容性进行GPU计算，采用vasp_std 进行计算，最后进行错误和输出的重定型和打印。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/20251110%20vasp%20-cao-zuo.html</guid><pubDate>Sun, 09 Nov 2025 17:48:25 +0000</pubDate></item><item><title>20251107</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251107.html</link><description># lmdb库使用
+**(1)一个机器一个卡**：`mpirun -np 1 -mca coll ^hcoll vasp_std |&amp; tee -a relax.out` ；表示进程数量为1，兼容性进行GPU计算，采用vasp_std 进行计算，最后进行错误和输出的重定型和打印。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/20251110%20vasp%20-cao-zuo.html</guid><pubDate>Sun, 09 Nov 2025 17:48:25 +0000</pubDate></item><item><title>20251107 Lmdb库使用</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251107%20Lmdb-ku-shi-yong.html</link><description># lmdb库使用
 - come from :[(50 封私信 / 81 条消息) lmdb 数据库 - 知乎](https://zhuanlan.zhihu.com/p/70359311)
 - 内容： 
 	- 锁文件 `lock.mdb`
@@ -322,7 +322,7 @@ with env.begin(write=False) as txn:
     cv2.imshow('image', img)
     cv2.waitKey(0)
 ```
-。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/20251107.html</guid><pubDate>Thu, 06 Nov 2025 19:02:02 +0000</pubDate></item><item><title>20251101 getitem 方法使用</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251101%20getitem%20-fang-fa-shi-yong.html</link><description># python 类中的特殊方法
+。</description><guid isPermaLink="true">https://blackcatontree.github.io/zhoushilei.github.io/post/20251107%20Lmdb-ku-shi-yong.html</guid><pubDate>Thu, 06 Nov 2025 19:02:02 +0000</pubDate></item><item><title>20251101 getitem 方法使用</title><link>https://blackcatontree.github.io/zhoushilei.github.io/post/20251101%20getitem%20-fang-fa-shi-yong.html</link><description># python 类中的特殊方法
 
 ## __ini__ 方法
 
