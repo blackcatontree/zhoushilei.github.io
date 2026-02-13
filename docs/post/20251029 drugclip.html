@@ -113,7 +113,7 @@ pip install -e ./ # 3. 安装 unicore 库（在 pytorch2.5.1 环境中）
 <meta property="og:url" content="https://blackcatontree.github.io/zhoushilei.github.io/post/20251029%20drugclip.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/114755056?v=4">
 <title>20251029 drugclip</title>
-
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
 
 </head>
@@ -137,7 +137,17 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     body {padding: 8px;}
     .postTitle{font-size:24px;}
 }
-
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
 </style>
 
 
@@ -172,26 +182,24 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="markdown-body" id="postBody"><h2>一、ligand数据库构建</h2>
 <h3>1. 采用了split_sdf 进行分割处理</h3>
 <h3>2. 数据库分子ID索引问题：</h3>
-<pre lang="python" class="notranslate"><code class="notranslate"># ... in getID function
-for id_key in ['IDNUMBER','Catalog ID','ID']:
-    try:
-        return mol.GetProp(id_key)
-    except:
-        pass
-raise ValueError('No ID found in molecule')
-</code></pre>
-<pre lang="python" class="notranslate"><code class="notranslate">def getID(mol):
-    # 最终的 ID 键搜索列表，Catalog_ID 是最高优先级
-    for id_key in ['Catalog_ID', 'ZID', 'Compound_ID', 'ENAMINE_ID', 'IDNUMBER', 'Catalog ID', 'ID', 'NSC']: 
-        try:
-            # 找到正确的 ID 键并返回
-            return mol.GetProp(id_key)
-        except:
-            pass
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># ... in getID function</span>
+<span class="pl-k">for</span> <span class="pl-s1">id_key</span> <span class="pl-c1">in</span> [<span class="pl-s">'IDNUMBER'</span>,<span class="pl-s">'Catalog ID'</span>,<span class="pl-s">'ID'</span>]:
+    <span class="pl-k">try</span>:
+        <span class="pl-k">return</span> <span class="pl-s1">mol</span>.<span class="pl-c1">GetProp</span>(<span class="pl-s1">id_key</span>)
+    <span class="pl-k">except</span>:
+        <span class="pl-k">pass</span>
+<span class="pl-k">raise</span> <span class="pl-en">ValueError</span>(<span class="pl-s">'No ID found in molecule'</span>)</pre></div>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">getID</span>(<span class="pl-s1">mol</span>):
+    <span class="pl-c"># 最终的 ID 键搜索列表，Catalog_ID 是最高优先级</span>
+    <span class="pl-k">for</span> <span class="pl-s1">id_key</span> <span class="pl-c1">in</span> [<span class="pl-s">'Catalog_ID'</span>, <span class="pl-s">'ZID'</span>, <span class="pl-s">'Compound_ID'</span>, <span class="pl-s">'ENAMINE_ID'</span>, <span class="pl-s">'IDNUMBER'</span>, <span class="pl-s">'Catalog ID'</span>, <span class="pl-s">'ID'</span>, <span class="pl-s">'NSC'</span>]: 
+        <span class="pl-k">try</span>:
+            <span class="pl-c"># 找到正确的 ID 键并返回</span>
+            <span class="pl-k">return</span> <span class="pl-s1">mol</span>.<span class="pl-c1">GetProp</span>(<span class="pl-s1">id_key</span>)
+        <span class="pl-k">except</span>:
+            <span class="pl-k">pass</span>
     
-    # 如果所有键都失败，则抛出错误
-    raise ValueError('No ID found in molecule')
-</code></pre>
+    <span class="pl-c"># 如果所有键都失败，则抛出错误</span>
+    <span class="pl-k">raise</span> <span class="pl-en">ValueError</span>(<span class="pl-s">'No ID found in molecule'</span>)</pre></div>
 <h3>3.特殊的原子进行UFF 力场的MMFF优化时失败</h3>
 <pre lang="text" class="notranslate"><code class="notranslate">Se2+2 (4)、Pt+2 (1)、Ca+2 (0)、 S_6+6 (12)、Re5 (2)、Fe2+2 (0)、 Ce+3 (0)
 </code></pre>
@@ -200,13 +208,12 @@ raise ValueError('No ID found in molecule')
 <h3>1. 网盘下载pt权重</h3>
 <h3>2. unicore 是自己定义的，找不到</h3>
 <p><a href="https://github.com/dptech-corp/Uni-Core">unicore</a></p>
-<pre lang="shell" class="notranslate"><code class="notranslate">git clone https://github.com/dptech-corp/Uni-Core.git
-# 或者直接下载到本地然后上传，上传后解压
-cd /home/dataset-assist-0/tmp/zsl/AIDD/
+<div class="highlight highlight-source-shell"><pre class="notranslate">git clone https://github.com/dptech-corp/Uni-Core.git
+<span class="pl-c"><span class="pl-c">#</span> 或者直接下载到本地然后上传，上传后解压</span>
+<span class="pl-c1">cd</span> /home/dataset-assist-0/tmp/zsl/AIDD/
 unzip main.zip
-cd Uni-Core-main 
-pip install -e ./ # 3. 安装 unicore 库（在 pytorch2.5.1 环境中）
-</code></pre>
+<span class="pl-c1">cd</span> Uni-Core-main 
+pip install -e ./ <span class="pl-c"><span class="pl-c">#</span> 3. 安装 unicore 库（在 pytorch2.5.1 环境中）</span></pre></div>
 <h3>3. positive_ligand 数据ID 直接用分子式</h3>
 <h3>4. 直接调用开始做rank</h3>
 <p>#DrugCLIP 验证脚本分析</p>
@@ -249,7 +256,7 @@ pip install -e ./ # 3. 安装 unicore 库（在 pytorch2.5.1 环境中）
 <li><strong>分布式支持</strong>：采用 <code class="notranslate">DistributedSampler</code> 助力大规模数据处理。</li>
 <li><strong>灵活扩展</strong>：参数化设计支持不同规模诱饵库验证。</li>
 </ul>
-<pre lang="shell" class="notranslate"><code class="notranslate">python /home/dataset-assist-0/tmp/zsl/AIDD/3-baseline/0302_encoder/030201_encode.py \
+<div class="highlight highlight-source-shell"><pre class="notranslate">python /home/dataset-assist-0/tmp/zsl/AIDD/3-baseline/0302_encoder/030201_encode.py \
     /home/dataset-assist-0/tmp/zsl/AIDD/3-baseline/0302_encoder/checkpoint_best.pt \
     --user-pocket-path /home/dataset-assist-0/tmp/zsl/AIDD/2-data/protein/pocket.lmdb \
     --user-mol-path-inact /home/dataset-assist-0/tmp/zsl/AIDD/2-data/ligand/sdftolmdb/enamine_molecules.lmdb \
@@ -260,13 +267,12 @@ pip install -e ./ # 3. 安装 unicore 库（在 pytorch2.5.1 环境中）
     --active-encoder-dir /home/dataset-assist-0/tmp/zsl/AIDD/2-data/positive_ligand \
     --batch-size 1024\
     --task drugclip \
-    --data /dummy/data/path
-</code></pre>
+    --data /dummy/data/path</pre></div>
 <h3>5. 局部调用出问题</h3>
-<pre lang="shell" class="notranslate"><code class="notranslate">W1029 13:35:32.406891 83249 site-packages/torch/distributed/run.py:793] 
-W1029 13:35:32.406891 83249 site-packages/torch/distributed/run.py:793] *****************************************
-W1029 13:35:32.406891 83249 site-packages/torch/distributed/run.py:793] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
-W1029 13:35:32.406891 83249 site-packages/torch/distributed/run.py:793] *****************************************
+<div class="highlight highlight-source-shell"><pre class="notranslate">W1029 13:35:32.406891 83249 site-packages/torch/distributed/run.py:793] 
+W1029 13:35:32.406891 83249 site-packages/torch/distributed/run.py:793] <span class="pl-k">*****************************************</span>
+W1029 13:35:32.406891 83249 site-packages/torch/distributed/run.py:793] Setting OMP_NUM_THREADS environment variable <span class="pl-k">for</span> <span class="pl-smi">each process to be 1</span> <span class="pl-k">in</span> default, to avoid your system being overloaded, please further tune the variable <span class="pl-k">for</span> <span class="pl-smi">optimal performance</span> <span class="pl-k">in</span> your application as needed. 
+W1029 13:35:32.406891 83249 site-packages/torch/distributed/run.py:793] <span class="pl-k">*****************************************</span>
 fused_multi_tensor is not installed corrected
 fused_rounding is not installed corrected
 fused_multi_tensor is not installed corrected
@@ -278,40 +284,39 @@ fused_layer_norm is not installed corrected
 fused_rms_norm is not installed corrected
 fused_softmax is not installed corrected
 FATAL ERROR: 无法导入 UniMol/DrugCLIP 组件。请检查 PYTHONPATH。
-详情: cannot import name 'ConcatDataset' from 'unicore.data' (/home/dataset-assist-0/tmp/zsl/AIDD/Uni-Core-main/unicore/data/__init__.py)
+详情: cannot import name <span class="pl-s"><span class="pl-pds">'</span>ConcatDataset<span class="pl-pds">'</span></span> from <span class="pl-s"><span class="pl-pds">'</span>unicore.data<span class="pl-pds">'</span></span> (/home/dataset-assist-0/tmp/zsl/AIDD/Uni-Core-main/unicore/data/__init__.py)
 FATAL ERROR: 无法导入 UniMol/DrugCLIP 组件。请检查 PYTHONPATH。
-详情: cannot import name 'ConcatDataset' from 'unicore.data' (/home/dataset-assist-0/tmp/zsl/AIDD/Uni-Core-main/unicore/data/__init__.py)
+详情: cannot import name <span class="pl-s"><span class="pl-pds">'</span>ConcatDataset<span class="pl-pds">'</span></span> from <span class="pl-s"><span class="pl-pds">'</span>unicore.data<span class="pl-pds">'</span></span> (/home/dataset-assist-0/tmp/zsl/AIDD/Uni-Core-main/unicore/data/__init__.py)
 W1029 13:35:39.093090 83249 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 83258 closing signal SIGTERM
 E1029 13:35:39.126109 83249 site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 1 (pid: 83259) of binary: /opt/conda/envs/pytorch2.5.1/bin/python3.9
 Traceback (most recent call last):
-  File "/opt/conda/envs/pytorch2.5.1/bin/torchrun", line 7, in &lt;module&gt;
-    sys.exit(main())
-  File "/opt/conda/envs/pytorch2.5.1/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
-    return f(*args, **kwargs)
-  File "/opt/conda/envs/pytorch2.5.1/lib/python3.9/site-packages/torch/distributed/run.py", line 919, in main
+  File <span class="pl-s"><span class="pl-pds">"</span>/opt/conda/envs/pytorch2.5.1/bin/torchrun<span class="pl-pds">"</span></span>, line 7, <span class="pl-k">in</span> <span class="pl-k">&lt;</span>module<span class="pl-k">&gt;</span>
+    <span class="pl-en">sys.exit(main</span>())
+  File <span class="pl-s"><span class="pl-pds">"</span>/opt/conda/envs/pytorch2.5.1/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py<span class="pl-pds">"</span></span>, line 355, <span class="pl-k">in</span> wrapper
+    <span class="pl-k">return</span> f(<span class="pl-k">*</span>args, <span class="pl-k">**</span>kwargs)
+  File <span class="pl-s"><span class="pl-pds">"</span>/opt/conda/envs/pytorch2.5.1/lib/python3.9/site-packages/torch/distributed/run.py<span class="pl-pds">"</span></span>, line 919, <span class="pl-k">in</span> main
     run(args)
-  File "/opt/conda/envs/pytorch2.5.1/lib/python3.9/site-packages/torch/distributed/run.py", line 910, in run
+  File <span class="pl-s"><span class="pl-pds">"</span>/opt/conda/envs/pytorch2.5.1/lib/python3.9/site-packages/torch/distributed/run.py<span class="pl-pds">"</span></span>, line 910, <span class="pl-k">in</span> run
     elastic_launch(
-  File "/opt/conda/envs/pytorch2.5.1/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
-    return launch_agent(self._config, self._entrypoint, list(args))
-  File "/opt/conda/envs/pytorch2.5.1/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+  File <span class="pl-s"><span class="pl-pds">"</span>/opt/conda/envs/pytorch2.5.1/lib/python3.9/site-packages/torch/distributed/launcher/api.py<span class="pl-pds">"</span></span>, line 138, <span class="pl-k">in</span> __call__
+    <span class="pl-k">return</span> launch_agent(self._config, self._entrypoint, list(args))
+  File <span class="pl-s"><span class="pl-pds">"</span>/opt/conda/envs/pytorch2.5.1/lib/python3.9/site-packages/torch/distributed/launcher/api.py<span class="pl-pds">"</span></span>, line 269, <span class="pl-k">in</span> launch_agent
     raise ChildFailedError(
 torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
 ============================================================
 /home/dataset-assist-0/tmp/zsl/AIDD/3-baseline/0302_encoder/030201_encode.py FAILED
 ------------------------------------------------------------
 Failures:
-  &lt;NO_OTHER_FAILURES&gt;
+  <span class="pl-k">&lt;</span>NO_OTHER_FAILURES<span class="pl-k">&gt;</span>
 ------------------------------------------------------------
 Root Cause (first observed failure):
 [0]:
-  time      : 2025-10-29_13:35:39
-  host      : drug-clip2-6a8298
-  rank      : 1 (local_rank: 1)
-  exitcode  : 1 (pid: 83259)
-  error_file: &lt;N/A&gt;
-  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
-</code></pre>
+  <span class="pl-k">time</span>      <span class="pl-c1">:</span> 2025-10-29_13:35:39
+  host      <span class="pl-c1">:</span> drug-clip2-6a8298
+  rank      <span class="pl-c1">:</span> 1 (local_rank: 1)
+  exitcode  <span class="pl-c1">:</span> 1 (pid: 83259)
+  error_file: <span class="pl-k">&lt;</span>N/A<span class="pl-k">&gt;</span>
+  traceback <span class="pl-c1">:</span> To <span class="pl-c1">enable</span> traceback see: https://pytorch.org/docs/stable/elastic/errors.html</pre></div>
 <p>我现在改变主意了：</p>
 <ol>
 <li>口袋：/home/dataset-assist-0/tmp/zsl/AIDD/2-data/protein/pocket.lmdb；</li>
@@ -350,7 +355,7 @@ if(""!=""){
 </script></div>
 </body>
 <script>
-var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
 var utterancesLoad=0;
 
 let themeSettings={
@@ -424,7 +429,70 @@ function iFrameLoading(){
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
 
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
 
 </script>
 
