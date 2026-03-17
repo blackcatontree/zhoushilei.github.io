@@ -397,7 +397,7 @@ with env.begin(write=False) as txn:
 <meta property="og:url" content="https://blackcatontree.github.io/zhoushilei.github.io/post/20251107%20Lmdb-ku-shi-yong.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/114755056?v=4">
 <title>20251107 Lmdb库使用</title>
-
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
 
 </head>
@@ -480,52 +480,47 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>基本函数</li>
 </ul>
 <h2>lmdb 基本参数</h2>
-<pre lang="python" class="notranslate"><code class="notranslate">env = lmdb.open() # 创建lmdb环境
-txn = env.begin() # 建立事务
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">env</span> <span class="pl-c1">=</span> <span class="pl-s1">lmdb</span>.<span class="pl-c1">open</span>() <span class="pl-c"># 创建lmdb环境</span>
+<span class="pl-s1">txn</span> <span class="pl-c1">=</span> <span class="pl-s1">env</span>.<span class="pl-c1">begin</span>() <span class="pl-c"># 建立事务</span>
 
-txn.put(key,value) # 进行插入和修改
-txn.delete(key) #进行删除
-txn.get(key) #查询
-txn.cursor() #遍历
+<span class="pl-s1">txn</span>.<span class="pl-c1">put</span>(<span class="pl-s1">key</span>,<span class="pl-s1">value</span>) <span class="pl-c"># 进行插入和修改</span>
+<span class="pl-s1">txn</span>.<span class="pl-c1">delete</span>(<span class="pl-s1">key</span>) <span class="pl-c">#进行删除</span>
+<span class="pl-s1">txn</span>.<span class="pl-c1">get</span>(<span class="pl-s1">key</span>) <span class="pl-c">#查询</span>
+<span class="pl-s1">txn</span>.<span class="pl-c1">cursor</span>() <span class="pl-c">#遍历</span>
 
-txn.commit() #提交更改
-</code></pre>
+<span class="pl-s1">txn</span>.<span class="pl-c1">commit</span>() <span class="pl-c">#提交更改</span></pre></div>
 <h2>lmdb 修改任务</h2>
-<pre lang="python" class="notranslate"><code class="notranslate">import lmdb
-env = lmdb.load(lmdb_path,map_size=100 * 1024 * 1024 * 1024) #导入数据库
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">lmdb</span>
+<span class="pl-s1">env</span> <span class="pl-c1">=</span> <span class="pl-s1">lmdb</span>.<span class="pl-c1">load</span>(<span class="pl-s1">lmdb_path</span>,<span class="pl-s1">map_size</span><span class="pl-c1">=</span><span class="pl-c1">100</span> <span class="pl-c1">*</span> <span class="pl-c1">1024</span> <span class="pl-c1">*</span> <span class="pl-c1">1024</span> <span class="pl-c1">*</span> <span class="pl-c1">1024</span>) <span class="pl-c">#导入数据库</span>
 
-txn = env.begin(write=True) # 对数据库进行写入操作
-txn.put(str(1).encode(),"Alice".encode()) #对数据库进行插入和修改操作，传入的数据为键值对
-#encode() 改变参数形式，bytes，后面用decode可以得到原始的数据
-txn.delete(str(1).encode()) # 删除操作
-</code></pre>
+<span class="pl-s1">txn</span> <span class="pl-c1">=</span> <span class="pl-s1">env</span>.<span class="pl-c1">begin</span>(<span class="pl-s1">write</span><span class="pl-c1">=</span><span class="pl-c1">True</span>) <span class="pl-c"># 对数据库进行写入操作</span>
+<span class="pl-s1">txn</span>.<span class="pl-c1">put</span>(<span class="pl-en">str</span>(<span class="pl-c1">1</span>).<span class="pl-c1">encode</span>(),<span class="pl-s">"Alice"</span>.<span class="pl-c1">encode</span>()) <span class="pl-c">#对数据库进行插入和修改操作，传入的数据为键值对</span>
+<span class="pl-c">#encode() 改变参数形式，bytes，后面用decode可以得到原始的数据</span>
+<span class="pl-s1">txn</span>.<span class="pl-c1">delete</span>(<span class="pl-en">str</span>(<span class="pl-c1">1</span>).<span class="pl-c1">encode</span>()) <span class="pl-c"># 删除操作</span></pre></div>
 <h2>lmdb 数据库遍历</h2>
-<pre lang="python" class="notranslate"><code class="notranslate">env = lmdb.load(lmdb_path,map_size = 100 * 1024 *1024 * 1024)
-txn = env.begin()
-# 索引
-print(txn.get(str(2).encode())) #get(key) 单条记录
-# 遍历
-for key,value in txn.cursor(): # 类似于游标，每读取一个，向下移动一个
-	print(key,value)
-env.close()
-</code></pre>
-<pre lang="python" class="notranslate"><code class="notranslate">with env.begin() as txn:
-	print(txn.get(str(2).encode()))
-	for key,value in txn.cursor():
-		print(key,value)
-</code></pre>
-<pre lang="python" class="notranslate"><code class="notranslate">import lmdb
-env = lmdb.open('/home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/inami_lmdb/final_merged20251103.lmdb', readonly=True, lock=False)
-# 创建一个只读事务来统计条目数
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">env</span> <span class="pl-c1">=</span> <span class="pl-s1">lmdb</span>.<span class="pl-c1">load</span>(<span class="pl-s1">lmdb_path</span>,<span class="pl-s1">map_size</span> <span class="pl-c1">=</span> <span class="pl-c1">100</span> <span class="pl-c1">*</span> <span class="pl-c1">1024</span> <span class="pl-c1">*</span><span class="pl-c1">1024</span> <span class="pl-c1">*</span> <span class="pl-c1">1024</span>)
+<span class="pl-s1">txn</span> <span class="pl-c1">=</span> <span class="pl-s1">env</span>.<span class="pl-c1">begin</span>()
+<span class="pl-c"># 索引</span>
+<span class="pl-en">print</span>(<span class="pl-s1">txn</span>.<span class="pl-c1">get</span>(<span class="pl-en">str</span>(<span class="pl-c1">2</span>).<span class="pl-c1">encode</span>())) <span class="pl-c">#get(key) 单条记录</span>
+<span class="pl-c"># 遍历</span>
+<span class="pl-k">for</span> <span class="pl-s1">key</span>,<span class="pl-s1">value</span> <span class="pl-c1">in</span> <span class="pl-s1">txn</span>.<span class="pl-c1">cursor</span>(): <span class="pl-c"># 类似于游标，每读取一个，向下移动一个</span>
+	<span class="pl-en">print</span>(<span class="pl-s1">key</span>,<span class="pl-s1">value</span>)
+<span class="pl-s1">env</span>.<span class="pl-c1">close</span>()</pre></div>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">with</span> <span class="pl-s1">env</span>.<span class="pl-c1">begin</span>() <span class="pl-k">as</span> <span class="pl-s1">txn</span>:
+	<span class="pl-en">print</span>(<span class="pl-s1">txn</span>.<span class="pl-c1">get</span>(<span class="pl-en">str</span>(<span class="pl-c1">2</span>).<span class="pl-c1">encode</span>()))
+	<span class="pl-k">for</span> <span class="pl-s1">key</span>,<span class="pl-s1">value</span> <span class="pl-c1">in</span> <span class="pl-s1">txn</span>.<span class="pl-c1">cursor</span>():
+		<span class="pl-en">print</span>(<span class="pl-s1">key</span>,<span class="pl-s1">value</span>)</pre></div>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">lmdb</span>
+<span class="pl-s1">env</span> <span class="pl-c1">=</span> <span class="pl-s1">lmdb</span>.<span class="pl-c1">open</span>(<span class="pl-s">'/home/dataset-assist-0/tmp/zsl/Drugclip/DrugCLIP/unimol/data/inami/inami_lmdb/final_merged20251103.lmdb'</span>, <span class="pl-s1">readonly</span><span class="pl-c1">=</span><span class="pl-c1">True</span>, <span class="pl-s1">lock</span><span class="pl-c1">=</span><span class="pl-c1">False</span>)
+<span class="pl-c"># 创建一个只读事务来统计条目数</span>
 
-with env.begin() as txn:
-    # 获取统计信息，其中包含条目数量
-    stats = txn.stat()
-    print(f"LMDB中的总条目数为: {stats['entries']}") 
-env.close()
+<span class="pl-k">with</span> <span class="pl-s1">env</span>.<span class="pl-c1">begin</span>() <span class="pl-k">as</span> <span class="pl-s1">txn</span>:
+    <span class="pl-c"># 获取统计信息，其中包含条目数量</span>
+    <span class="pl-s1">stats</span> <span class="pl-c1">=</span> <span class="pl-s1">txn</span>.<span class="pl-c1">stat</span>()
+    <span class="pl-en">print</span>(<span class="pl-s">f"LMDB中的总条目数为: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">stats</span>[<span class="pl-s">'entries'</span>]<span class="pl-kos">}</span></span>"</span>) 
+<span class="pl-s1">env</span>.<span class="pl-c1">close</span>()
 
-上面的lmdb是一个单文件，但是默认读取的方式是目录格式：
-</code></pre>
+<span class="pl-s1">上面的lmdb是一个单文件</span>，<span class="pl-s1">但是默认读取的方式是目录格式</span>：</pre></div>
 <p>import lmdb<br>
 evn  = lmdb.open("direction")<br>
 with env.begin() as txn:<br>
@@ -534,115 +529,112 @@ print(stats["entries"])<br>
 env.close()</p>
 <pre class="notranslate"><code class="notranslate"></code></pre>
 <h2>demo</h2>
-<pre lang="python" class="notranslate"><code class="notranslate">import lmdb
-import os, sys
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">lmdb</span>
+<span class="pl-k">import</span> <span class="pl-s1">os</span>, <span class="pl-s1">sys</span>
 
-def initialize():
-    env = lmdb.open("lmdb_dir")
-    return env
+<span class="pl-k">def</span> <span class="pl-en">initialize</span>():
+    <span class="pl-s1">env</span> <span class="pl-c1">=</span> <span class="pl-s1">lmdb</span>.<span class="pl-c1">open</span>(<span class="pl-s">"lmdb_dir"</span>)
+    <span class="pl-k">return</span> <span class="pl-s1">env</span>
 
-def insert(env, sid, name):
-    txn = env.begin(write=True)
-    txn.put(str(sid).encode(), name.encode())
-    txn.commit()
+<span class="pl-k">def</span> <span class="pl-en">insert</span>(<span class="pl-s1">env</span>, <span class="pl-s1">sid</span>, <span class="pl-s1">name</span>):
+    <span class="pl-s1">txn</span> <span class="pl-c1">=</span> <span class="pl-s1">env</span>.<span class="pl-c1">begin</span>(<span class="pl-s1">write</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+    <span class="pl-s1">txn</span>.<span class="pl-c1">put</span>(<span class="pl-en">str</span>(<span class="pl-s1">sid</span>).<span class="pl-c1">encode</span>(), <span class="pl-s1">name</span>.<span class="pl-c1">encode</span>())
+    <span class="pl-s1">txn</span>.<span class="pl-c1">commit</span>()
 
-def delete(env, sid):
-    txn = env.begin(write=True)
-    txn.delete(str(sid).encode())
-    txn.commit()
+<span class="pl-k">def</span> <span class="pl-en">delete</span>(<span class="pl-s1">env</span>, <span class="pl-s1">sid</span>):
+    <span class="pl-s1">txn</span> <span class="pl-c1">=</span> <span class="pl-s1">env</span>.<span class="pl-c1">begin</span>(<span class="pl-s1">write</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+    <span class="pl-s1">txn</span>.<span class="pl-c1">delete</span>(<span class="pl-en">str</span>(<span class="pl-s1">sid</span>).<span class="pl-c1">encode</span>())
+    <span class="pl-s1">txn</span>.<span class="pl-c1">commit</span>()
 
-def update(env, sid, name):
-    txn = env.begin(write=True)
-    txn.put(str(sid).encode(), name.encode())
-    txn.commit()
+<span class="pl-k">def</span> <span class="pl-en">update</span>(<span class="pl-s1">env</span>, <span class="pl-s1">sid</span>, <span class="pl-s1">name</span>):
+    <span class="pl-s1">txn</span> <span class="pl-c1">=</span> <span class="pl-s1">env</span>.<span class="pl-c1">begin</span>(<span class="pl-s1">write</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+    <span class="pl-s1">txn</span>.<span class="pl-c1">put</span>(<span class="pl-en">str</span>(<span class="pl-s1">sid</span>).<span class="pl-c1">encode</span>(), <span class="pl-s1">name</span>.<span class="pl-c1">encode</span>())
+    <span class="pl-s1">txn</span>.<span class="pl-c1">commit</span>()
 
-def search(env, sid):
-    txn = env.begin()
-    name = txn.get(str(sid).encode())
-    return name
+<span class="pl-k">def</span> <span class="pl-en">search</span>(<span class="pl-s1">env</span>, <span class="pl-s1">sid</span>):
+    <span class="pl-s1">txn</span> <span class="pl-c1">=</span> <span class="pl-s1">env</span>.<span class="pl-c1">begin</span>()
+    <span class="pl-s1">name</span> <span class="pl-c1">=</span> <span class="pl-s1">txn</span>.<span class="pl-c1">get</span>(<span class="pl-en">str</span>(<span class="pl-s1">sid</span>).<span class="pl-c1">encode</span>())
+    <span class="pl-k">return</span> <span class="pl-s1">name</span>
 
-def display(env):
-    txn = env.begin()
-    cur = txn.cursor()
-    for key, value in cur:
-        print(key, value)
+<span class="pl-k">def</span> <span class="pl-en">display</span>(<span class="pl-s1">env</span>):
+    <span class="pl-s1">txn</span> <span class="pl-c1">=</span> <span class="pl-s1">env</span>.<span class="pl-c1">begin</span>()
+    <span class="pl-s1">cur</span> <span class="pl-c1">=</span> <span class="pl-s1">txn</span>.<span class="pl-c1">cursor</span>()
+    <span class="pl-k">for</span> <span class="pl-s1">key</span>, <span class="pl-s1">value</span> <span class="pl-c1">in</span> <span class="pl-s1">cur</span>:
+        <span class="pl-en">print</span>(<span class="pl-s1">key</span>, <span class="pl-s1">value</span>)
 
 
-env = initialize()
+<span class="pl-s1">env</span> <span class="pl-c1">=</span> <span class="pl-en">initialize</span>()
 
-print("Insert 3 records.")
-insert(env, 1, "Alice")
-insert(env, 2, "Bob")
-insert(env, 3, "Peter")
-display(env)
+<span class="pl-en">print</span>(<span class="pl-s">"Insert 3 records."</span>)
+<span class="pl-en">insert</span>(<span class="pl-s1">env</span>, <span class="pl-c1">1</span>, <span class="pl-s">"Alice"</span>)
+<span class="pl-en">insert</span>(<span class="pl-s1">env</span>, <span class="pl-c1">2</span>, <span class="pl-s">"Bob"</span>)
+<span class="pl-en">insert</span>(<span class="pl-s1">env</span>, <span class="pl-c1">3</span>, <span class="pl-s">"Peter"</span>)
+<span class="pl-en">display</span>(<span class="pl-s1">env</span>)
 
-print("Delete the record where sid = 1.")
-delete(env, 1)
-display(env)
+<span class="pl-en">print</span>(<span class="pl-s">"Delete the record where sid = 1."</span>)
+<span class="pl-en">delete</span>(<span class="pl-s1">env</span>, <span class="pl-c1">1</span>)
+<span class="pl-en">display</span>(<span class="pl-s1">env</span>)
 
-print("Update the record where sid = 3.")
-update(env, 3, "Mark")
-display(env)
+<span class="pl-en">print</span>(<span class="pl-s">"Update the record where sid = 3."</span>)
+<span class="pl-en">update</span>(<span class="pl-s1">env</span>, <span class="pl-c1">3</span>, <span class="pl-s">"Mark"</span>)
+<span class="pl-en">display</span>(<span class="pl-s1">env</span>)
 
-print("Get the name of student whose sid = 3.")
-name = search(env, 3)
-print(name)
+<span class="pl-en">print</span>(<span class="pl-s">"Get the name of student whose sid = 3."</span>)
+<span class="pl-s1">name</span> <span class="pl-c1">=</span> <span class="pl-en">search</span>(<span class="pl-s1">env</span>, <span class="pl-c1">3</span>)
+<span class="pl-en">print</span>(<span class="pl-s1">name</span>)
 
-# 最后需要关闭关闭lmdb数据库
-env.close()
+<span class="pl-c"># 最后需要关闭关闭lmdb数据库</span>
+<span class="pl-s1">env</span>.<span class="pl-c1">close</span>()
 
-# 执行系统命令
-os.system("rm -r lmdb_dir")
-</code></pre>
+<span class="pl-c"># 执行系统命令</span>
+<span class="pl-s1">os</span>.<span class="pl-c1">system</span>(<span class="pl-s">"rm -r lmdb_dir"</span>)</pre></div>
 <h2>图像深度学习训练</h2>
 <p>将大量的原始数据集转化为lmdb格式方便后面训练</p>
-<pre lang="python" class="notranslate"><code class="notranslate">import lmdb
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">lmdb</span>
 
-image_path = './cat.jpg'
-label = 'cat'
+<span class="pl-s1">image_path</span> <span class="pl-c1">=</span> <span class="pl-s">'./cat.jpg'</span>
+<span class="pl-s1">label</span> <span class="pl-c1">=</span> <span class="pl-s">'cat'</span>
 
-env = lmdb.open('lmdb_dir')
-cache = {}  # 存储键值对
+<span class="pl-s1">env</span> <span class="pl-c1">=</span> <span class="pl-s1">lmdb</span>.<span class="pl-c1">open</span>(<span class="pl-s">'lmdb_dir'</span>)
+<span class="pl-s1">cache</span> <span class="pl-c1">=</span> {}  <span class="pl-c"># 存储键值对</span>
 
-with open(image_path, 'rb') as f:
-    # 读取图像文件的二进制格式数据
-    image_bin = f.read()
+<span class="pl-k">with</span> <span class="pl-en">open</span>(<span class="pl-s1">image_path</span>, <span class="pl-s">'rb'</span>) <span class="pl-k">as</span> <span class="pl-s1">f</span>:
+    <span class="pl-c"># 读取图像文件的二进制格式数据</span>
+    <span class="pl-s1">image_bin</span> <span class="pl-c1">=</span> <span class="pl-s1">f</span>.<span class="pl-c1">read</span>()
 
-# 用两个键值对表示一个数据样本
-cache['image_000'] = image_bin
-cache['label_000'] = label
+<span class="pl-c"># 用两个键值对表示一个数据样本</span>
+<span class="pl-s1">cache</span>[<span class="pl-s">'image_000'</span>] <span class="pl-c1">=</span> <span class="pl-s1">image_bin</span>
+<span class="pl-s1">cache</span>[<span class="pl-s">'label_000'</span>] <span class="pl-c1">=</span> <span class="pl-s1">label</span>
 
-with env.begin(write=True) as txn:
-    for k, v in cache.items():
-        if isinstance(v, bytes):
-            # 图片类型为bytes
-            txn.put(k.encode(), v)
-        else:
-            # 标签类型为str, 转为bytes
-            txn.put(k.encode(), v.encode())  # 编码
+<span class="pl-k">with</span> <span class="pl-s1">env</span>.<span class="pl-c1">begin</span>(<span class="pl-s1">write</span><span class="pl-c1">=</span><span class="pl-c1">True</span>) <span class="pl-k">as</span> <span class="pl-s1">txn</span>:
+    <span class="pl-k">for</span> <span class="pl-s1">k</span>, <span class="pl-s1">v</span> <span class="pl-c1">in</span> <span class="pl-s1">cache</span>.<span class="pl-c1">items</span>():
+        <span class="pl-k">if</span> <span class="pl-en">isinstance</span>(<span class="pl-s1">v</span>, <span class="pl-s1">bytes</span>):
+            <span class="pl-c"># 图片类型为bytes</span>
+            <span class="pl-s1">txn</span>.<span class="pl-c1">put</span>(<span class="pl-s1">k</span>.<span class="pl-c1">encode</span>(), <span class="pl-s1">v</span>)
+        <span class="pl-k">else</span>:
+            <span class="pl-c"># 标签类型为str, 转为bytes</span>
+            <span class="pl-s1">txn</span>.<span class="pl-c1">put</span>(<span class="pl-s1">k</span>.<span class="pl-c1">encode</span>(), <span class="pl-s1">v</span>.<span class="pl-c1">encode</span>())  <span class="pl-c"># 编码</span>
 
-env.close()
-</code></pre>
+<span class="pl-s1">env</span>.<span class="pl-c1">close</span>()</pre></div>
 <p>读取图片的数据</p>
-<pre lang="python" class="notranslate"><code class="notranslate">import cv2
-import lmdb
-import numpy as np
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">cv2</span>
+<span class="pl-k">import</span> <span class="pl-s1">lmdb</span>
+<span class="pl-k">import</span> <span class="pl-s1">numpy</span> <span class="pl-k">as</span> <span class="pl-s1">np</span>
 
-env = lmdb.open('lmdb_dir')
+<span class="pl-s1">env</span> <span class="pl-c1">=</span> <span class="pl-s1">lmdb</span>.<span class="pl-c1">open</span>(<span class="pl-s">'lmdb_dir'</span>)
 
-with env.begin(write=False) as txn:
-    # 获取图像数据
-    image_bin = txn.get('image_000'.encode())
-    label = txn.get('label_000'.encode()).decode()  # 解码
+<span class="pl-k">with</span> <span class="pl-s1">env</span>.<span class="pl-c1">begin</span>(<span class="pl-s1">write</span><span class="pl-c1">=</span><span class="pl-c1">False</span>) <span class="pl-k">as</span> <span class="pl-s1">txn</span>:
+    <span class="pl-c"># 获取图像数据</span>
+    <span class="pl-s1">image_bin</span> <span class="pl-c1">=</span> <span class="pl-s1">txn</span>.<span class="pl-c1">get</span>(<span class="pl-s">'image_000'</span>.<span class="pl-c1">encode</span>())
+    <span class="pl-s1">label</span> <span class="pl-c1">=</span> <span class="pl-s1">txn</span>.<span class="pl-c1">get</span>(<span class="pl-s">'label_000'</span>.<span class="pl-c1">encode</span>()).<span class="pl-c1">decode</span>()  <span class="pl-c"># 解码</span>
 
-    # 将二进制文件转为十进制文件（一维数组）
-    image_buf = np.frombuffer(image_bin, dtype=np.uint8)
-    # 将数据转换(解码)成图像格式
-    # cv2.IMREAD_GRAYSCALE为灰度图，cv2.IMREAD_COLOR为彩色图
-    img = cv2.imdecode(image_buf, cv2.IMREAD_COLOR)
-    cv2.imshow('image', img)
-    cv2.waitKey(0)
-</code></pre></div>
+    <span class="pl-c"># 将二进制文件转为十进制文件（一维数组）</span>
+    <span class="pl-s1">image_buf</span> <span class="pl-c1">=</span> <span class="pl-s1">np</span>.<span class="pl-c1">frombuffer</span>(<span class="pl-s1">image_bin</span>, <span class="pl-s1">dtype</span><span class="pl-c1">=</span><span class="pl-s1">np</span>.<span class="pl-c1">uint8</span>)
+    <span class="pl-c"># 将数据转换(解码)成图像格式</span>
+    <span class="pl-c"># cv2.IMREAD_GRAYSCALE为灰度图，cv2.IMREAD_COLOR为彩色图</span>
+    <span class="pl-s1">img</span> <span class="pl-c1">=</span> <span class="pl-s1">cv2</span>.<span class="pl-c1">imdecode</span>(<span class="pl-s1">image_buf</span>, <span class="pl-s1">cv2</span>.<span class="pl-c1">IMREAD_COLOR</span>)
+    <span class="pl-s1">cv2</span>.<span class="pl-c1">imshow</span>(<span class="pl-s">'image'</span>, <span class="pl-s1">img</span>)
+    <span class="pl-s1">cv2</span>.<span class="pl-c1">waitKey</span>(<span class="pl-c1">0</span>)</pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
